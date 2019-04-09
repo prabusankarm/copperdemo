@@ -1,0 +1,125 @@
+<header class="custom_header">
+    <nav class="navbar navbar-expand-lg bg-color-blue py-0">
+        <a href="JavaScript:Void(0);" class="hamburger-icon mr-3 mb-auto">
+            <span class="line line-1"></span>
+            <span class="line line-2"></span>
+            <span class="line line-3"></span> 
+         </a>
+        <a class="navbar-brand" href="#!/dashboard">
+            <span>Softura</span></a>
+        <div class="moile_hamburg_dots"></div>    
+        <div class="col-lg-8 col-md-9 col-sm-12 col-12 ml-auto mobile_header">
+            <div class="row d-flex justify-content-end">
+                  
+                <div class="col-lg-4 col-md-4 col-12 align-self-center hd_search_main">
+                  
+
+                   <!-- ---- Search Part ----- -->
+                    <form action="" class="search-form">
+                        <div class="form-group has-feedback">
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                            <span class="icon-search form-control-feedback"></span> </div>
+                    </form>
+                </div>
+                           
+                <a href="JavaScript:Void(0);" class="align-self-center" style="color:white" ng-click="downloadDashFile()">
+               <span class="icon-download"></span></a>                
+               <pre> </pre>
+               <a href="JavaScript:Void(0);" class="align-self-center" style="color:white" ng-click="DownloadPrint()"> <span class="icon-printer"></span></a>                
+               <pre> </pre>
+                <a href="JavaScript:Void(0);" class="maxmize maxmize_full requestfullscreen text-white mt-2 pt-1"><span
+                        class="icon-enlarge"></span></a>
+                <div class="dropdown align-self-center notification">
+                    <a class="nav-link icon text-white" data-toggle="dropdown" aria-expanded="false"> <span class="icon-bell"></span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item d-flex"> <span class="notification_profile mr-3 align-self-center">
+                                <img src="/client/assets/images/faces/male/18.jpg" /> </span>
+                            <div class="inner_div"> <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                                <div class="small text-muted">10 minutes ago</div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex"> <span class="notification_profile mr-3 align-self-center"
+                                style="background-image: url(/client/assets/images/faces/female/1.jpg)"></span>
+                            <div class="inner_div"> <strong>Alice</strong> started new task: Tabler UI design.
+                                <div class="small text-muted">1 hour ago</div>
+                            </div>
+                        </a>
+                        <a class="dropdown-item d-flex"> <span class="notification_profile mr-3 align-self-center"
+                                style="background-image: url(/client/assets/images/faces/female/18.jpg)"></span>
+                            <div class="inner_div"> <strong>Rose</strong> deployed new version of NodeJS REST Api V3
+                                <div class="small text-muted">2 hours ago</div>
+                            </div>
+                        </a>
+                        <div class="dropdown-divider"></div> <a class="dropdown-item text-center text-muted-dark">Mark
+                            all as read</a>
+                    </div>
+                </div>
+                
+                <div class="dropdown border-left border-blue-light header_profile">
+                    <a class="nav-link d-flex flex-row pointer" data-toggle="dropdown" aria-expanded="false"> <span
+                            class="avatar" style="background-image: url(/client/assets/images/notification.jpg)"></span>
+                        <span class="ml-2">
+                            <span class="header_profile_name float-left">John Doe</span> <small class="header_profile_name_role">Administrator</small>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"> <i class="dropdown-icon fe fe-user"></i> Profile </a>
+                        <a class="dropdown-item"> <i class="dropdown-icon fe fe-settings"></i> Settings </a>
+                        <a class="dropdown-item"> <span class="float-right"> <span class="badge badge-primary">6</span>
+                            </span> <i class="dropdown-icon fe fe-mail"></i> Inbox </a>
+                        <a class="dropdown-item"> <i class="dropdown-icon fe fe-send"></i> Message </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"> <i class="dropdown-icon fe fe-help-circle"></i> Need help? </a>
+                        <a class="dropdown-item" href="#!/login">
+                            <i class="dropdown-icon fe fe-log-out"></i> Sign out </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+   
+    <!-- ---------------- Menu Bar Started --------------- -->
+    <div class="nav-scroller bg-color-light-blue menu-bar">
+        <nav class="nav nav-underline">
+            <li class="nav-item"> <a class="nav-link active" href="#!dashboard"><span class="icon-meter mr-1"></span>Dashboard</a>
+            </li>
+            <li class="nav-item"> <a class="nav-link active" href="#!container"><span class="icon-meter mr-1"></span>Docker</a>
+            </li>
+        </nav>
+    </div>
+</header>
+
+<main role="main">
+    <!-- ----------------- Main title Part --------------- -->
+    <div class="container-fluid py-3" cg-busy="{promise:containerData,message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+        <div data-ng-init="getImages()" class="bg-white py-3 col-lg-12">
+            <h4>Docker Image Detail: softura-docker</h4>
+                <table class="table table-bordered">
+                <thead>
+                    <tr style="background: #f6f6f6;">
+                        <th class="text-center">Tag Name                        </th>
+                        <th class="text-center">ID </th>
+                        <th class="text-center">Updated On </th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="images in containerImageList">
+                        <td class="text-center">{{images.name }}</td>
+                        <td class="text-center">{{ images.id }}</td>
+                        <td class="text-center">{{ images.last_updated  | date : 'MM/dd/yyyy HH:mm:ss'}}</td>
+                        <td class="text-center"><input type="button" class="btn btn-primary " value="Push" class="close"
+                            ng-click="pushImage(images.name)"></td>
+                    </tr>
+                </tbody>               
+                
+            </table>
+            <toaster-container toaster-options="{'close-button':true, 'position-class': 'toast-bottom-left', 'time-out':{ 'toast-warning': 2000, 'toast-error': 0 } }"></toaster-container> <!-- -- Toaster Msg comman -- -->
+        </div>
+    </div>
+</main>
+
+<script src="/client/assets/js/lib/tablecellsselection.js"></script>
+<script src="/client/assets/js/custom.js"></script>

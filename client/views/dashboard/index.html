@@ -1,0 +1,2033 @@
+
+<!-- ====== On scroll setting btn open ===== --- -->
+<button class="scroll_addwidget" ng-click="editDashboard()"><span class="icon-setting1 hd_edit_click"></span></button>
+ <div class="scroll_widget_main">
+    <ul>
+       <li><a href="javascript:void(0)" class="title_ancher add_dashboard_outer" ng-click="addDataSource()"><span class="icon-folder-plus mr-3"></span>Add Data Source</a></li>
+       <li><a href="javascript:void(0)" class="title_ancher addwidget" ng-click="addWidget()"><span class="icon-plus mr-3"></span>Add Widget</a></li>
+       <li><a href="javascript:void(0)" class="title_ancher hd_cancel" ng-click="saveDashboardWidgets(selectedDashboard,true)"><span class="icon-save mr-3"></span>Save Dashboard</a></li>
+       <li><a href="javascript:void(0)" class="title_ancher hd_cancel" ng-click="cancelEdit(selectedDashboard.DashboardId)"><span class="icon-close-thick mr-3"></span>Cancel</a></li>
+  
+       
+    </ul>
+</div>
+<!-- ====== Header Part =============== --- -->
+
+ <header class="custom_header">
+     <nav class="navbar navbar-expand-lg bg-color-blue py-0">
+         <a href="JavaScript:Void(0);" class="hamburger-icon mr-3 mb-auto">
+             <span class="line line-1"></span>
+             <span class="line line-2"></span>
+             <span class="line line-3"></span> 
+          </a>
+         <a class="navbar-brand" href="#!/dashboard">
+             <span>Softura</span></a>
+         <div class="moile_hamburg_dots"></div>    
+         <div class="col-lg-8 col-md-9 col-sm-12 col-12 ml-auto mobile_header">
+             <div class="row d-flex justify-content-end">
+                   
+                 <div class="col-lg-4 col-md-4 col-12 align-self-center hd_search_main">
+                   
+
+                    <!-- ---- Search Part ----- -->
+                     <form action="" class="search-form">
+                         <div class="form-group has-feedback">
+                             <label for="search" class="sr-only">Search</label>
+                             <input type="text" class="form-control" name="search" id="search" placeholder="Search">
+                             <span class="icon-search form-control-feedback"></span> </div>
+                     </form>
+                 </div>
+                            
+                 <a href="JavaScript:Void(0);" class="align-self-center" style="color:white" ng-click="downloadDashFile()">
+                <span class="icon-download"></span></a>                
+                <pre> </pre>
+                <a href="JavaScript:Void(0);" class="align-self-center" style="color:white" ng-click="DownloadPrint()"> <span class="icon-printer"></span></a>                
+                <pre> </pre>
+                 <a href="JavaScript:Void(0);" class="maxmize maxmize_full requestfullscreen text-white mt-2 pt-1"><span
+                         class="icon-enlarge"></span></a>
+                 <div class="dropdown align-self-center notification">
+                     <a class="nav-link icon text-white" data-toggle="dropdown" aria-expanded="false"> <span class="icon-bell"></span>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right">
+                         <a class="dropdown-item d-flex"> <span class="notification_profile mr-3 align-self-center">
+                                 <img src="/client/assets/images/faces/male/18.jpg" /> </span>
+                             <div class="inner_div"> <strong>Nathan</strong> pushed new commit: Fix page load performance issue.
+                                 <div class="small text-muted">10 minutes ago</div>
+                             </div>
+                         </a>
+                         <a class="dropdown-item d-flex"> <span class="notification_profile mr-3 align-self-center"
+                                 style="background-image: url(/client/assets/images/faces/female/1.jpg)"></span>
+                             <div class="inner_div"> <strong>Alice</strong> started new task: Tabler UI design.
+                                 <div class="small text-muted">1 hour ago</div>
+                             </div>
+                         </a>
+                         <a class="dropdown-item d-flex"> <span class="notification_profile mr-3 align-self-center"
+                                 style="background-image: url(/client/assets/images/faces/female/18.jpg)"></span>
+                             <div class="inner_div"> <strong>Rose</strong> deployed new version of NodeJS REST Api V3
+                                 <div class="small text-muted">2 hours ago</div>
+                             </div>
+                         </a>
+                         <div class="dropdown-divider"></div> <a class="dropdown-item text-center text-muted-dark">Mark
+                             all as read</a>
+                     </div>
+                 </div>
+                 <span class="my-dash_hover">
+                     <a href="javascript:void(0)" class="my-dash_click popup_offshadow align-self-center">My Dashboard
+                     </a>
+                     <div class="my-dash_sub">
+                         <div class="resCarousel" data-items="1-3-3-6" data-interval="false" data-slide="1">
+                             <div class="resCarousel-inner existing_dashboard">
+                                 <div class="item" ng-repeat="dashboard in dashboardList">
+                                     <div class="col-lg-12">
+                                         <div class="dash_box">
+                                             <a href="JavaScript:Void(0);" class="w-100 float-left text-center position-relative">
+                                                 <img class="dash_box_img mt-3" src="/client/assets/images/dashboard-img.jpg" />
+                                                 <span class="dash_box_name w-100 position-absolute bottom-align-text">
+                                                     {{dashboard.DashboardName}}
+                                                 </span> </a>
+                                             <div class="dash_box_hover w-100 d-flex justify-content-center">
+                                                 <a href="JavaScript:Void(0);" ng-click="changeDashboard(dashboard.DashboardId)"
+                                                     data-dismiss="modal" class="text-center"><span class="icon-eye1"></span><br />View</a>
+                                                 <span class="line_gray"></span>                                                      
+                                                    <a href="JavaScript:Void(0);" class="text-center" ng-click="deleteConfirmation(dashboard.DashboardId)"><span class="icon-delete"></span> <br/>Delete</a>
+                                             </div>
+                                             <div class="inputGroup">
+                                                 <input id="{{dashboard.DashboardName}}" name="radio1" type="radio"
+                                                     ng-model="defaultChangedId" ng-checked="dashboard.DefaultDashboard"
+                                                     ng-change="changeDefault(defaultChangedId)" value="{{dashboard}}" />
+                                                 <label for="{{dashboard.DashboardName}}" class="d-flex flex-column" data-toggle="tooltip" title="set as default!"></label>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <a href="javascript:void(0)" class="leftRs"><span class="icon-arrow-lewft"></span></a>
+                             <a href="javascript:void(0)" class="rightRs"><span class="icon-arrow-lewft"></span></a>
+                         </div>
+                     </div>
+                 </span>
+                 <a href="JavaScript:Void(0);" class="add_dashboard align-self-center">+</a>
+ 
+                 <div class="dropdown border-left border-blue-light header_profile">
+                     <a class="nav-link d-flex flex-row pointer" data-toggle="dropdown" aria-expanded="false"> <span
+                             class="avatar" style="background-image: url(/client/assets/images/notification.jpg)"></span>
+                         <span class="ml-2">
+                             <span class="header_profile_name float-left">John Doe</span> <small class="header_profile_name_role">Administrator</small>
+                         </span>
+                     </a>
+                     <div class="dropdown-menu">
+                         <a class="dropdown-item"> <i class="dropdown-icon fe fe-user"></i> Profile </a>
+                         <a class="dropdown-item"> <i class="dropdown-icon fe fe-settings"></i> Settings </a>
+                         <a class="dropdown-item"> <span class="float-right"> <span class="badge badge-primary">6</span>
+                             </span> <i class="dropdown-icon fe fe-mail"></i> Inbox </a>
+                         <a class="dropdown-item"> <i class="dropdown-icon fe fe-send"></i> Message </a>
+                         <div class="dropdown-divider"></div>
+                         <a class="dropdown-item"> <i class="dropdown-icon fe fe-help-circle"></i> Need help? </a>
+                         <a class="dropdown-item" href="#!/login">
+                             <i class="dropdown-icon fe fe-log-out"></i> Sign out </a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </nav>
+    
+     <!-- ---------------- Menu Bar Started --------------- -->
+     <div class="nav-scroller bg-color-light-blue menu-bar">
+         <nav class="nav nav-underline">
+            <li class="nav-item"> <a class="nav-link active" href="#!dashboard"><span class="icon-meter mr-1"></span>Dashboard</a>
+            </li>
+            <li class="nav-item"> <a class="nav-link active" href="#!container"><span class="icon-meter mr-1"></span>Docker</a>
+            </li>
+         </nav>
+     </div>
+ </header>
+
+ <!-- ===== Main Body Start =========== -->
+ <main role="main">
+    <!-- ----------------- Main title Part --------------- -->
+     <div class="container-fluid">
+         <div class="title_part" data-ng-init="widgetsConfig();apiConfiguration();refresh();getTemplates();">
+             <div class="col-xl-6 col-lg-5 col-md-5 col-sm-12 col-12 float-left">
+                 <div class="row d-flex align-items-center title_sub_left">
+                     <label class="custom_h3 custom_h3_main mr-2" ng-bind="selectedDashboard.DashboardName"></label>
+                     <input class="custom_h3_input" type="text" ng-model="updatedName" required name="updatedName" ng-value ="selectedDashboard.DashboardName"/>
+
+                     <span class="mr-2 line_gray">|</span>
+                     <div class="custom_h3_edit" ng-click="updatedName = selectedDashboard.DashboardName"><span class="icon-edit mr-1"></span> Edit Title</div>
+                     <div class="custom_h3_save" ng-enter="updateDashboard(selectedDashboard,updatedName)" ng-click="updateDashboard(selectedDashboard,updatedName)"><span
+                             class="icon-save mr-1"></span>
+                         Save</div>
+                     <span class="mr-2 line_gray ml-2">|</span>
+                     <div class="custom_h3_cancel"><span class="icon-close-thick mr-1"></span> Cancel</div>
+                 </div>
+             </div>
+             <div class="col-xl-6 col-lg-7 col-md-7 col-sm-12 col-12 float-right float-md-left float-sm-left px-0 px-xl-1 px-lg-1 px-md-0">
+                 <div class="row d-flex align-items-center justify-content-xl-end justify-content-sm-start title_sub_right hd-defalut">
+                     <a href="javascript:void(0)" class="title_ancher share_a" data-backdrop="static" data-toggle="modal"
+                         data-target="#share" ng-click="shareInit()"><span class="icon-share mr-1"></span> Share</a>
+                     <span class="mx-1 mx-md-2 mx-lg-2 line_gray">|</span>
+                     <a href="javascript:void(0)" class="title_ancher hd_edit_click config_a" ng-click="editDashboard()"><span
+                             class="icon-setting1 mr-1"></span>
+                         Configure</a>
+                 </div>
+                 <div class="row d-flex align-items-center justify-content-xl-end justify-content-sm-start title_sub_right hd_edit">
+                     <a href="javascript:void(0)" class="title_ancher add_dashboard_outer" ng-click="addDataSource()"><span class="icon-folder-plus mr-1"></span>
+                         Add Data Source</a>
+                     <span class="mx-1 mx-md-2 mx-lg-2 line_gray">|</span>
+                     <a href="javascript:void(0)" class="title_ancher addwidget" ng-click="addWidget()"><span class="icon-plus mr-1"></span> Add Widget</a>
+                     <span class="mx-1 mx-md-2 mx-lg-2 line_gray">|</span>
+                     <a href="javascript:void(0)" class="title_ancher save_dashboard hd_cancel" ng-click="saveDashboardWidgets(selectedDashboard,true)"><span
+                             class="icon-save mr-1"></span>
+                         Save Dashboard</a>
+                     <span class="mx-1 mx-md-2 mx-lg-2 line_gray">|</span>
+                     <a href="javascript:void(0)" class="title_ancher delete_a" ng-click="deleteConfirmation(selectedDashboard.DashboardId)"><span
+                             class="icon-delete mr-1"></span>
+                         Delete</a>
+                     <span class="mx-1 mx-md-2 mx-lg-2 line_gray">|</span>
+                     <a href="javascript:void(0)" class="title_ancher cancel_a hd_cancel" ng-click="cancelEdit(selectedDashboard.DashboardId)"><span class="icon-close-thick mr-1"></span>
+                         Cancel</a>
+                   
+                 </div>
+             </div>
+         </div>
+     </div>
+
+     <!-- ----------------- Grister part ----------------- -->
+     <div class="container-fluid ">
+         <div class="grid_master">
+         <div gridster="gridsterOptions" >
+             <ul >
+                 
+                 <li gridster-item="widget" ng-repeat="widget in dashboard.widgets" class="widget" id={{"isFullscreen"+$index}}>
+                    <div class={{"Screen"+$index}}> 
+                    <header data-ng-init="DashboarddataLoad(widget)"> <!-- ------- All Widget Header Here ------- -->
+                         <h4 class="draggable">{{widget.name}} <span class="icon-notification widget_i" data-toggle="tooltip"
+                                 data-placement="top" title={{widget.description}} tooltip></span></h4>
+                         <div class="grid_hd_right d-flex align-items-center edit-show">
+                            <a href="javascript:void(0)" ng-click="fullScreenWidget($index)" class="maxmize"
+                                 data-toggle="tooltip" data-placement="top" title="Enlarge" tooltip><span class="icon-enlarge"></span></a>
+                             <a href="javascript:void(0)" class="refresh" data-toggle="tooltip" data-placement="top"
+                                 title="Refresh" tooltip><span class="icon-refresh" ng-click="DashboarddataLoad(widget)"></span></a>
+                          <div class="dropdown">
+                                 <a href="javascript:void(0)" id="dropdown_grid" data-toggle="dropdown" aria-haspopup="true"
+                                     aria-expanded="false" class="download" data-toggle="tooltip" data-placement="top"
+                                     title="Download (image, xhtml, pdf and Print)" tooltip><span class="icon-download2"></span></a>
+                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown_grid">
+                                     <a class="dropdown-item" href="JavaScript:Void(0);"ng-click="DownloadWidget($index,widget,'image')">Image<span class="icon-image ml-2"></span></a>
+                                     <a class="dropdown-item" href="JavaScript:Void(0);">Xhtml<span class="icon-display ml-2"></span></a>
+                                     <a class="dropdown-item" href="JavaScript:Void(0);" ng-click="DownloadWidget($index,widget,'pdf')">Pdf<span class="icon-file-pdf ml-2"></span></a>
+                                     <a class="dropdown-item" href="JavaScript:Void(0);">Print<span class="icon-printer ml-2"></span></a>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="grid_hd_right d-flex align-items-center edit-noneshow">
+                            <a href="javascript:void(0)" class="setting config_widget_click" title="" data-original-title="Configuration"
+                                 data-backdrop="static"><span class="icon-setting2"
+                                     ng-click="editWidget(widget)"></span></a>
+                             <a href="javascript:void(0)" class="setting edit_widget_click" title="" data-original-title="Configuration"
+                                 data-backdrop="static"><span class="icon-edit"
+                                     ng-click="editWidget(widget)"></span></a>
+                             <a href="javascript:void(0)" class="delete" data-toggle="tooltip" data-placement="top"
+                                 title="" data-original-title="Delete Widget"><span class="icon-delete" ng-click="remove(widget)"></span></a> 
+                         </div>
+                     </header>
+                     <div class="div_g" id={{"isFullscreen1"+$index}}> <!-- -------- All Widget Body Here --------- -->
+                        <div ng-if="widget.category=='number'" style="height:100%;text-align:center"> <!-- -- Number widget -- -->
+                             <div class="iot_loader" cg-busy="{promise:dashboardDisplayData[widget.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                 <span class="number_count">{{dashboardTile[widget.id][0].value}}</span>
+                             </div>
+                         </div>
+                         <div ng-if="widget.category=='numberUnit'" style="height:100%;text-align:center"> <!-- -- Number unit widget -- -->
+                             <div class="iot_loader" cg-busy="{promise:dashboardDisplayData[widget.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                 <span class="number_count">{{dashboardTile[widget.id].value}}</span>
+                                 <span>{{dashboardTile[widget.id].unit}}
+                                     <span>
+							</div>		
+                             </div>
+                         <div id="chart" ng-if="widget.type=='chart'" style="height:98%;width:98%"> <!-- -- Chart widget -- -->
+                             <div cg-busy="{promise:dashboardDisplayData[widget.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}"></div>
+                             <nvd3  options="multiChartConfig[widget.id]" data="dashboardTile[widget.id]"></nvd3>
+                         </div>
+                         <div id="myImg" ng-if="widget.category=='image'" style="height:100%; text-align: center;"> <!-- -- Media Image widget -- -->
+                             <img  style="height: 100%; max-width: 100%;" ng-src="{{widget.configuration.dataSourceSelected.url}}" >
+                         </div>
+                         <div  ng-if="widget.category=='carousel'"> <!-- -- Media Image widget -- -->
+                            <!-- <slick class="slider" settings="slickConfig[widget.id]" ng-if="slickConfig1Loaded[widget.id]" >
+                            <div ng-repeat="item in carouselItems[widget.id]" >
+                             <img class="carouselimg" ng-src="{{ item.url }}" />
+                            </div> 
+                            </slick>    -->
+                            <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="700" data-interval="4000">
+                                <div class="resCarousel-inner template">
+                                    <div class="item" ng-repeat="item in carouselItems[widget.id]">
+                                            <div class="dash_box">
+                                                <a href="JavaScript:Void(0);" class="w-100 float-left text-center position-relative">
+                                                    <img class="widget_carousel" ng-src="{{item.url}}" />
+                                                </a>
+                                            </div>
+                                    </div>
+                                </div>
+                                <a href="javascript:void(0)" class="rightRs"><span class="icon-arrow-lewft"></span></a>
+                                <a href="javascript:void(0)" class="leftRs"><span class="icon-arrow-lewft"></span></a>
+                            </div>
+                        </div>
+                         <div class="table_custom" ng-if="widget.type=='table'" style="height:100%;width: 100%;"> <!-- -- Table widget -- -->
+                             <div id={{"myGrid"+widget.id}} style="height: 99%;" class="ag-theme-balham"></div>
+                         </div>
+                         <div ng-if="widget.type=='webpage'" style="height:100%;"> <!-- -- Webpage widget -- -->
+                             <iframe ng-src="{{widget.configuration.dataSourceSelected.url | trusted}}" style="height:100%;width: 100%">
+                             </iframe>
+                         </div>
+                         <div ng-if="widget.type=='powerbi'" style="height:100%;"> <!-- -- PowerBi widget -- -->
+                             <iframe style="height:100%;width: 100%" ng-src="{{widget.configuration.dataSourceSelected.url | trusted}}"
+                                 frameborder="0" allowFullScreen="true">
+                             </iframe>
+                         </div>
+                         <div ng-if="widget.category=='video' && widget.configuration.dataSourceSelected.type=='externalLink'" style="height:100%;"> <!-- -- Media Video widget -- -->
+                             <iframe width="100%" class="video_height" ng-src="{{widget.configuration.dataSourceSelected.url | trusted}}"></iframe>
+                         </div>
+                         <div ng-if="widget.category=='video' && widget.configuration.dataSourceSelected.type=='mp4'" style="height:100%;"> <!-- -- Media Video widget -- -->
+                             <video class="video_height" width="100%" controls>
+                                 <source ng-src="{{widget.configuration.dataSourceSelected.url | trusted}}" type="video/mp4">
+                                 Your browser does not support HTML5 video.
+                               </video>
+                         </div>
+                         <div ng-if="widget.category=='audio' && widget.configuration.dataSourceSelected.type=='externalLink'" style="height:100%;"> <!-- -- Media Audio widget -- -->
+                             <iframe style="height: inherit;" width="100%" scrolling="no" frameborder="no" allow="autoplay" ng-src="{{widget.configuration.dataSourceSelected.url | trusted}}"></iframe>
+                         </div>
+                         <div ng-if="widget.category=='audio' && widget.configuration.dataSourceSelected.type=='mp3'" style="height:100%;"> <!-- -- Media Audio widget -- -->
+                             <audio id="t-rex-roar-loop" controls>
+                             <source type="audio/mpeg" ng-src="{{widget.configuration.dataSourceSelected.url | trusted}}"/>
+                             Your browser does not support the <code>audio</code> element.
+                             </audio>
+                         </div>
+                         <div ng-if="widget.category=='markerMap'" style="height:100%;"> <!-- -- Marker Map widget -- -->
+                             <div id={{"map"+widget.id}} style="height:100%;width:100%"></div>
+                         </div>
+                         <div ng-if="widget.category=='heatMap'" style="height:100%;"> <!-- -- Heat Map widget -- -->
+                             <div id={{"heatmap"+widget.id}} style="height:100%;width:100%"></div>
+                         </div>
+                         <div ng-if="widget.type=='action'" style="height:100%;"> <!-- -- Action widget -- -->
+                             <a class="widget_action" ng-href="{{widget.configuration.dataSourceSelected.url | trusted}}" target="_blank">{{widget.configuration.dataSourceSelected.url}}</a> 
+                         </div>
+                         <div ng-if="widget.type=='calendar'" class="calendar_main" data="events" dhx-scheduler style="height:100%;"> <!-- -- Calendar widget -- -->
+                             <div class="dhx_cal_date"></div>
+ 
+                         <div class="calendar_ctrls">
+                             <div class="dhx_cal_prev_button">&nbsp;</div>
+                             <div class="dhx_cal_next_button">&nbsp;</div>
+                             <div class="dhx_cal_today_button"></div>
+                             <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+                             <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+                             <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+                         </div>
+                             <div dhx-template="event_bar_text">
+                                 <strong>#{{dashboardTile[tempObj.id].id}}</strong>: {{dashboardTile[tempObj.id].text | uppercase}}
+                             </div>
+                             <div>
+                             </div>
+                         </div>
+                     </div>
+                    <div class="footer"><span>Last Updated Time : </span>{{lastRefreshTime[widget.id] | date : 'MM/dd/yyyy HH:mm:ss'}}</div> <!-- -- all Footer for widget -- -->
+                     </div> 
+                </li>
+               
+             </ul>
+             <div class="my-2 col-lg-12 bg-white text-center py-4 nodata" ng-show="dashboard.widgets.length == 0 || selectedDashboard==''"> <!-- -- No Data found -- -->
+                 <img src="/client/assets/images/no-data.jpg" /> <br />
+                 <p>Sorry, No Data Found</p>
+             </div>
+             </div>
+         </div>
+     </div>
+ </main>
+ <footer class="footer"> <!-- -- Web page footer -- -->
+     <div class="container-fluid bg-white py-2 float-left">
+         <span class="text-muted">Copyright © 2018 Softura. All rights reserved.</span>
+     </div>
+ </footer>
+ <div id="img-out"></div>
+<toaster-container toaster-options="{'close-button':true, 'position-class': 'toast-bottom-left', 'time-out':{ 'toast-warning': 2000, 'toast-error': 0 } }"></toaster-container> <!-- -- Toaster Msg comman -- -->
+
+<!-- ======================= All POPUPS START ============================= -->
+
+ <!-- ---------------- Outer Data Source Popups ------------ -->
+         <div class="add_dashboard_backdrop"></div>
+         <div class="outer_data_popup">
+             <div class="modal-dialog modal-lg">
+                 <div class="modal-content bg_color_light_gray">
+                     <!-- Modal body -->
+                     <div class="modal-body min_height_85vh">
+                         <button type="button" class="close add_dashboard_main_close data_source_cls"><span class="icon-close1 modal-close"></span></button>
+                         <!-- Modal body -->
+                         <div class="col-lg-12 ">
+                             <div class="w-100">
+                                 <h3 class="custom_h3 mb-2 mt-3">New Data Source</h3>
+                                 <form id="msform" name="add_datasource_form1">
+                                     <fieldset>
+                                         <div class="form-group col-lg-12 float-left px-0">
+                                             <label for="name">Name of Data Source</label>
+                                             <input type="text" class="form-control" id="name" placeholder="Name of Data Source"
+                                                 required ng-model="newDataSource.dataSourceName" name="datasource_name" ng-class="{ 'is-invalid' : (!add_datasource_form1.datasource_name.$valid && add_datasource_form1.datasource_name.$dirty)}">
+                                             <div class="invalid-feedback">
+                                                Please provide a valid Data Source Name.
+                                            </div> 
+                                         </div>
+                                         <div class="form-group col-lg-12 float-left px-0 mb-3">
+                                             <label for="name" class="mb-2">Refresh Frequency (seconds)</label>
+                                             <div >
+                                                 <rzslider rz-slider-model="newDataSource.dataSourceRefreshTime"
+                                                     rz-slider-options="slider.options"></rzslider>
+                                             </div>                                             
+                                         </div>
+                                         <div class="clearfix" class="mb-2"></div>
+                                         <div class="form-group col-lg-12 float-left px-0">
+                                             <label for="name">Retry Frequency</label>
+                                             <div>
+                                                 <rzslider rz-slider-model="newDataSource.dataSourceRetryFrequency"
+                                                     rz-slider-options="addWidgetSlider.options"></rzslider>
+                                             </div>
+                                         </div>
+                                         <div class="form-group col-lg-12 float-right px-0">
+                                             <label for="name">API Type</label>
+                                             <select class="form-control txt-upper" id="exampleFormControlSelect2"
+                                                 ng-model="newDataSource.dataSourceRequestType" name="datasource_type">
+                                                 <option value="rest">Rest</option>
+                                                 <option value="webhook">Webhook</option>
+                                                 <option value="signalr">SignalR</option>
+                                                 <option value="sharepoint">SharePoint Config</option>
+                                             </select>   
+                                         </div>
+                                         <div class="clearfix"></div>
+                                         <input type="button" name="next" class="next btn btn-primary float-right mt-3"
+                                             value="Next" ng-disabled="!add_datasource_form1.datasource_name.$valid"/>
+                                         <input type="button" name="cancel" class="btn btn-secondary float-right mt-3 mr-3 add_dashboard_main_close data_source_cls"
+                                             value="Cancel" />
+                                     </fieldset>
+                                     <fieldset>
+                                     <!-- SharePoint -->
+                                     <div ng-if="newDataSource.dataSourceRequestType=='sharepoint'">
+                                        <div class="form-group col-lg-12 float-left px-lg-3 px-md-0 px-sm-0 px-0">
+                                            <input type="text" class="form-control" id="name" placeholder="Enter URL"
+                                                required ng-model="newDataSource.dataSourceSharePointURL" name="datasourcesharepoint_url" ng-class="{ 'is-invalid' : (!add_datasource_form1.datasourcesharepoint_url.$valid && add_datasource_form1.datasourcesharepoint_url.$dirty)}">
+                                                <div class="invalid-feedback">
+                                                   Please provide a Data Source URL.
+                                               </div> 
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <!-- Nav tabs -->
+                                        <div class="w-100 add_data_source_tab">
+                                            <div id="tab-3" class="tab-content current">
+                                                <div class="clearfix"></div>
+                                                <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                    <label for="name">Client Id:</label>
+                                                    <input type="text" class="form-control" name="name" id="email"
+                                                        placeholder="Enter Client Id" required ng-model="newDataSource.clientId">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                    <label for="name">Client Secret:</label>
+                                                    <input type="text" class="form-control" name="name" id="email"
+                                                        placeholder="Enter Client Secret" required ng-model="newDataSource.clientSecret">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                    <label for="name">Table Name:</label>
+                                                    <input type="text" class="form-control" name="name" id="email"
+                                                        placeholder="Enter Table Name" required ng-model="newDataSource.tableName">
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                
+                                            </div>
+                                           
+                                        </div> 
+                                        <div class="clearfix"></div>                                        
+                                         </div>
+
+                                     <!-- SignalrR -->                           
+                                            <div ng-if="newDataSource.dataSourceRequestType=='signalr'">
+                                                    <div ng-init="accordion=1">
+                                                            <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                <a href ng-click="accordion = 1">Enter SignalR  URL</a>
+                                                            </h6>
+                                                    <div class="accordion-content" ng-show="accordion==1">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Data Source
+                                                                    Endpoint</label>
+                                                                <input maxlength="200" type="text" required="required"
+                                                                    class="form-control" placeholder="Enter Data Source URL"
+                                                                    ng-model="newDataSource.dataSourceSignalRURL" name="datasourcesignalr_url" ng-class="{ 'is-invalid' : (!add_datasource_form1.datasourcesignalr_url.$valid && add_datasource_form1.datasourcesignalr_url.$dirty)}">
+                                                                    <div class="invalid-feedback">
+                                                                       Please provide a Valid Data Source.
+                                                                   </div>
+                                                                   <label for="name">Method Name</label>
+                                                                <input type="text" class="form-control" id="name" placeholder="Method Name"
+                                                                    required ng-model="newDataSource.dataSourceMethodName" name="datasourcemethod_name" ng-class="{ 'is-invalid' : (!add_datasource_form1.datasourcemethod_name.$valid && add_datasource_form1.datasourcemethod_name.$dirty)}">
+                                                                    <div class="invalid-feedback">
+                                                                       Please provide a valid Method Name.
+                                                                   </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                                                 
+ 													<div class="form-group col-lg-12 float-left px-0 mb-3">
+                                                            <label for="name" class="mb-2">MessageLimit</label>
+                                                            <div >
+                                                                <rzslider rz-slider-model="newDataSource.datasourceSignalRMessageLimit"
+                                                                    rz-slider-options="SignalRslider.options"></rzslider>
+                                                            </div>                                             
+                                                    </div>  
+                                            </div>
+                                           
+                                         <div ng-if="newDataSource.dataSourceRequestType=='rest'">
+                                             <div class="form-group col-lg-2 float-left px-0">
+                                                 <select class="form-control" id="exampleFormControlSelect2" required
+                                                     ng-model="newDataSource.dataSourceRestType">
+                                                     <option value="post" >POST</option>
+                                                     <option value="get">GET</option>
+                                                     <option value="put" disabled>PUT</option>
+                                                     <option value="delete" disabled>DELETE</option>
+                                                 </select>
+                                             </div>
+                                             <div class="form-group col-lg-6 float-left px-lg-3 px-md-0 px-sm-0 px-0">
+                                                 <input type="text" class="form-control" id="name" placeholder="Enter URL"
+                                                     required ng-model="newDataSource.dataSourceRestURL" name="datasource_url" ng-class="{ 'is-invalid' : (!add_datasource_form1.datasource_url.$valid && add_datasource_form1.datasource_url.$dirty)}">
+                                                     <div class="invalid-feedback">
+                                                        Please provide a Data Source URL.
+                                                    </div> 
+                                             </div>
+                                             <div class="clearfix"></div>
+                                             <!-- Nav tabs -->
+                                             <div class="w-100 add_data_source_tab">
+                                                 <ul class="tabs">
+                                                     <li class="tab-link current" data-tab="tab-3">Header</li>
+                                                     <li class="tab-link" data-tab="tab-4" ng-if="newDataSource.dataSourceRestType=='post'">Body</li>
+                                                 </ul>
+                                                 <div id="tab-3" class="tab-content current">
+                                                     <div class="clearfix"></div>
+                                                     <div class="tab_content_inner position-relative col-lg-12 px-0">
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Key:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Key" required ng-model="newDataSource.dataSourceHeaders[0].key">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Value:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Value" required ng-model="newDataSource.dataSourceHeaders[0].value">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="clearfix"></div>
+                                                         <div class="clone_source" ng-repeat="obj in requestHeader.children">
+                                                             <div class="clearfix"></div>
+                                                             <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                                 <label for="name">Key:</label>
+                                                                 <input type="text" class="form-control" name="name" id="email"
+                                                                     placeholder="Enter Key" required ng-model="newDataSource.dataSourceHeaders[$index+1].key">
+                                                                 <div class="help-block with-errors"></div>
+                                                             </div>
+                                                             <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                                 <label for="name">Value:</label>
+                                                                 <input type="text" class="form-control" name="name" id="email"
+                                                                     placeholder="Enter Value" required ng-model="newDataSource.dataSourceHeaders[$index+1].value">
+                                                                 <div class="help-block with-errors"></div>
+                                                             </div>
+                                                             <div class="form-group col-lg-1 col-sm-1 col-1 pl-0 float-left">
+                                                                    <label for="name" class="invisible ">Value:</label>
+                                                                    <a class="add_data_source_delete" href="javascript:void(0)" ng-click="removeHeaderChild($index)"><span class="icon-delete mr-1"></span></a>
+                                                             </div>
+                                                         </div>
+                                                         <a href="javascript:void(0)" class="col-lg-1 col-md-1 col-sm-1 col-1 float-left add_data_source_pls_inner mt-4"
+                                                             ng-click="addHeaderChild()">+</a>
+                                                         <div class="clearfix"></div>
+                                                     </div>
+                                                 </div>
+                                                 <div id="tab-4" class="tab-content">
+                                                     <div class="clearfix"></div>
+                                                     <div class="tab_content_inner position-relative col-lg-12 px-0">
+                                                     <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                         <label for="name">Key:</label>
+                                                         <input type="text" class="form-control" name="name" id="email"
+                                                             placeholder="Enter Key" required ng-model="newDataSource.dataSourceBody[0].key">
+                                                         <div class="help-block with-errors"></div>
+                                                     </div>
+                                                     <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                         <label for="name">Value:</label>
+                                                         <input type="text" class="form-control" name="name" id="email"
+                                                             placeholder="Enter Value" required ng-model="newDataSource.dataSourceBody[0].value">
+                                                         <div class="help-block with-errors"></div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                     <div class="clone_source" ng-repeat="obj in requestBody.children">
+                                                         <div class="clearfix"></div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Key:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Key" required ng-model="newDataSource.dataSourceBody[$index+1].key">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Value:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Value" required ng-model="newDataSource.dataSourceBody[$index+1].value">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-1 col-sm-1 col-1 pl-0 float-left">
+                                                                <label for="name" class="invisible ">Value:</label>
+                                                                <a class="add_data_source_delete" href="javascript:void(0)" ng-click="removeBodyChild($index)"><span class="icon-delete mr-1"></span></a>
+                                                         </div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                     <a href="javascript:void(0)" class="col-lg-1 col-md-1 col-sm-1 col-1 float-left add_data_source_pls_inner mt-4"
+                                                         ng-click="addBodyChild()">+</a>
+                                                     </div>
+                                                 </div>
+                                             </div> 
+                                             <div class="clearfix"></div>                                        
+                                              </div>
+                                        <input type="button" name="next" class="next btn btn-primary float-right ml-3 mt-3"
+                                                value="Next" ng-click="generateRequest(newDataSource)"  ng-disabled="(!add_datasource_form1.datasource_url.$valid)&&(!add_datasource_form1.datasourcesharepoint_url.$valid)&&(!(add_datasource_form1.datasourcesignalr_url.$valid) && (!add_datasource_form1.datasourcemethod_name.$valid))"/>    
+                                         <input type="button" name="previous" class="previous btn btn-primary float-right mt-3"
+                                             value="Previous" ng-click="DatasourcecloseConnection(newDataSource)" />
+                                         <input type="button" name="cancel" class="btn btn-secondary float-right mt-3 mr-3 add_dashboard_main_close data_source_cls"
+                                             value="Cancel" ng-click="DatasourcecloseConnection(newDataSource)"/>
+                                     </fieldset>
+                                     <fieldset>
+                                         <div class="row" cg-busy="{promise:dataSourceResponse,message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                             <div class="col-md-6 col-sm-12 col-12">
+                                                 <div class="data-source-succus w-100 text-center" ng-if="(dataSourceData | json) != '{}' && !(dataSourceData.status>=300)">
+                                                     <p class="tick_round"><span class="icon-checkmark"></span></p>
+                                                     <p class="success_text">success !</p>
+                                                 </div>
+                                                 <div class="data-source-error w-100 text-center" ng-if="(dataSourceData | json) == '{}' || (dataSourceData.status>=300)">
+                                                     <p class="tick_round"><span class="icon-cross"></span></p>
+                                                     <p class="success_text">Error !</p>
+                                                 </div>
+                                             </div>
+                                            <div class="col-md-6 col-sm-12 col-12" ng-if="(dataSourceData | json) != '{}'">
+                                                <div class="code_block w-100 position-relative">
+                                                    <textarea class="w-100 s_f_json" id="ruleJson">{{dataSourceData | json}}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 col-12" ng-if="(dataSourceData | json) == '{}'">
+                                                <div class="code_block w-100 position-relative">
+                                                    <textarea class="w-100 s_f_json" id="ruleJson">{{dataSourceErrorData | json}}</textarea>
+                                                </div>
+                                            </div>
+                                         </div>
+                                         <button type="button" name="submit" class="submit btn btn-primary float-right ml-3 mt-3 add_data_source_calcel data_source_cls"
+                                              ng-click="saveDataSource(newDataSource)" ng-enabled="(dataSourceData | json) != '{}' && !(dataSourceData.status>=300)">Save
+                                             & Close</button>
+                                         <button type="button" name="previous" class="previous btn btn-primary float-right mt-3"
+                                             value="Previous" ng-click="DatasourcecloseConnection(newDataSource)">Previous</button>
+                                         <button type="button" name="cancel" class="btn btn-secondary float-right mt-3 mr-3 add_dashboard_main_close modal-close data_source_cls"
+                                             value="Cancel" ng-click="DatasourcecloseConnection(newDataSource)">Cancel</button>
+                                     </fieldset>
+                                 </form>
+                             </div>
+                         </div>
+ 
+                     </div>
+                 </div>
+             </div>
+         </div>
+<!-- ---------------- My Dashboard Popups ------------ -->
+         <div class="add_dashboard_backdrop"></div>
+         <div class="add_dashboard_main">
+             <div class="modal-dialog modal-xlg">
+                 <div class="modal-content bg_color_light_gray">
+                     <!-- Modal body -->
+                     <div class="modal-body">
+                         <button type="button" class="close" ng-click="closeAddModal()"><span class="icon-close1 modal-close"></span></button>
+                         <h4>Blank Dashboard</h4>
+                         <div class="row">
+                             <div class="col-lg-2">
+                                 <a href="JavaScript:Void(0);" class="w-100 float-left dash_box blank_dash_box text-center position-relative adddash_a"
+                                     ng-click="newDashboard()">
+                                     <div class="dash_box_plus">+</div> <span class="dash_box_name w-100 position-absolute bottom-align-text">New
+                                         Dashboard
+                                     </span>
+                                 </a>
+                             </div>
+                         </div>
+                         <hr class="mt-0" />
+                         <h4>Template</h4>
+                         <div class="resCarousel" data-items="1-3-3-6" data-interval="false" data-slide="1" data-animator="lazy">
+                             <div class="resCarousel-inner template">
+                                 <div class="item" ng-repeat="templates in templateList">
+                                     <div class="col-lg-12">
+                                         <div class="dash_box">
+                                             <a href="JavaScript:Void(0);" class="w-100 float-left text-center position-relative">
+                                                 <img class="dash_box_img mt-3" src="/client/assets/images/dashboard-img.jpg" />
+                                                 <span class="dash_box_name w-100 position-absolute bottom-align-text">
+                                                        {{templates.TemplateName}}
+                                                 </span>
+                                             </a>
+                                             <div class="dash_box_hover w-100 d-flex justify-content-center">
+                                                 <a href="JavaScript:Void(0);" class="text-center adddash_a" ng-click="useTemplateDashboard(templates)"><span class="icon-clone"></span>
+                                                     <br />Use</a>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <a href="javascript:void(0)" class="rightRs"><span class="icon-arrow-lewft"></span></a>
+                             <a href="javascript:void(0)" class="leftRs"><span class="icon-arrow-lewft"></span></a>
+                         </div>
+                         <hr class="mt-0" />
+                         <h4>Existing Dashboard</h4>
+                         <div class="resCarousel" data-items="1-2-3-6" data-interval="false" data-slide="1" data-animator="lazy"
+                             cg-busy="{promise:getDashboardList,message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                             <div class="resCarousel-inner existing_dashboard">
+                                 <div class="item" ng-repeat="dashboard in dashboardList">
+                                     <div class="col-lg-12">
+                                         <div class="dash_box">
+                                             <a href="JavaScript:Void(0);" class="w-100 float-left text-center position-relative">
+                                                 <img class="dash_box_img mt-3" src="/client/assets/images/dashboard-img.jpg" />
+                                                 <span class="dash_box_name w-100 position-absolute bottom-align-text">
+                                                     {{dashboard.DashboardName}}
+                                                 </span> </a>
+                                             <div class="dash_box_hover w-100 d-flex justify-content-center">
+                                                <a href="JavaScript:Void(0);" ng-click="cloneDashboard(dashboard.DashboardId)"
+                                                     data-dismiss="modal" class="text-center"><span class="icon-clone"></span>
+                                                     <br />Clone</a>
+                                             </div>
+                                             <div class="inputGroup">
+                                                 <input id={{dashboard.DashboardName}} name="radio" type="radio" ng-model="defaultChangedId"
+                                                     ng-checked="dashboard.DefaultDashboard" ng-change="changeDefault(defaultChangedId)"
+                                                     value="{{dashboard}}" />
+                                                 <label for={{dashboard.DashboardName}} class="d-flex flex-column"></label>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <a href="javascript:void(0)" class="leftRs"><span class="icon-arrow-lewft"></span></a>
+                             <a href="javascript:void(0)" class="rightRs"><span class="icon-arrow-lewft"></span></a>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+<!-- ---------------- Add Widget Popups ------------ -->
+         <div class="" id="addwidget">
+             <div class="modal-dialog modal-xmd">
+                 <div class="modal-content bg_color_light_gray">
+                     <!-- Modal body -->
+                     <button type="button" class="close add_dashboard_main_close right-0"
+                                     ng-click="cancelWidget(form)"><span class="icon-close1 modal-close"></span></button>
+                     <div class="modal-body px-lg-3 px-md-3 px-sm-0 px-0 height_100vh-1rem">
+                         <div class="col-lg-4 float-left">
+                             <div class="">
+                                 <h3 class="custom_h3 mb-2">Widget Types</h3>
+                                 <div class="widget_type">
+                                     <form>
+                                         <ul>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio1" name="radio" type="radio" ng-model="form.type"
+                                                         value="chart" />
+                                                     <label for="radio1" class="d-flex flex-column">
+                                                         <span class="icon-line-chart align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Chart Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio2" name="radio" type="radio" ng-model="form.type"
+                                                         value="number" />
+                                                     <label for="radio2" class="d-flex flex-column">
+                                                         <span class="icon-numbered-list align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Number Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio3" name="radio" type="radio" ng-model="form.type"
+                                                         value="action" />
+                                                     <label for="radio3" class="d-flex flex-column">
+                                                         <span class="icon-power1 align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Action Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio4" name="radio" type="radio" ng-model="form.type"
+                                                         value="media" />
+                                                     <label for="radio4" class="d-flex flex-column">
+                                                         <span class="icon-img align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Media Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio5" name="radio" type="radio" ng-model="form.type"
+                                                         value="webpage" />
+                                                     <label for="radio5" class="d-flex flex-column">
+                                                         <span class="icon-www align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Webpage Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio6" name="radio" type="radio" ng-model="form.type"
+                                                         value="map" />
+                                                     <label for="radio6" class="d-flex flex-column">
+                                                         <span class="icon-map1 align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Map Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio7" name="radio" type="radio" ng-model="form.type"
+                                                         value="table" />
+                                                     <label for="radio7" class="d-flex flex-column">
+                                                         <span class="icon-files align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Table Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio8" name="radio" type="radio" ng-model="form.type"
+                                                         value="powerbi" />
+                                                     <label for="radio8" class="d-flex flex-column">
+                                                         <span class="icon-power-bi-1 align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">PowerBI Widget</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="inputGroup">
+                                                     <input id="radio10" name="radio" type="radio" ng-model="form.type"
+                                                         value="calendar" />
+                                                     <label for="radio10" class="d-flex flex-column">
+                                                         <span class="icon-calendar align-self-center addwidget_icon"></span>
+                                                         <span class="align-self-center addwidget_name">Calendar</span>
+                                                     </label>
+                                                 </div>
+                                             </li>
+                                             <li class="lst-widgettype">
+                                                <div ng-if="form.type=='default' && stepValidity" class="invalid_widgettype">
+                                                    Please provide a valid Widget Type.
+                                                </div>
+                                             </li>
+                                         </ul>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-lg-8 float-left">
+                             <div class="pl-0">
+                                 <div class="requestwizard">
+                                     <div class="requestwizard-row setup-panel d-flex text-center">
+                                         <div class="requestwizard-step" ng-repeat="step in steps">
+                                             <button ng-click="goToStep($index,form)" type="button" class="btn btn-default btn-circle"
+                                                 ng-class="{selected: $index==getCurrentStepIndex()}">{{$index+1}}</button>
+                                             <p>{{step}}</p>
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="clearfix"></div>
+                                 <div class="addwidget_right">
+                                     <form id="msform" name="add_widget_form">
+                                         <div class="widget_body">
+                                             <!-- First Step -->
+                                             <div ng-show="selection=='Widget Configuration'">
+                                                 <fieldset>
+                                                     <div class="form-group col-lg-6 float-left px-0">
+                                                         <label for="name">Name of Widget</label>
+                                                         <input type="text" class="form-control" id="name" placeholder="Name of Widget"
+                                                             required ng-model="form.name" name="widget_name" ng-class="{ 'is-invalid' : (!form.name && stepValidity) ||  (add_widget_form.widget_name.$dirty && !form.name )}">
+                                                             <div class="invalid-feedback">
+                                                                Please provide a valid Widget Name.
+                                                            </div>
+                                                     </div>
+                                                     <div class="form-group float-right col-lg-6 pl-lg-3 pr-lg-0 px-sm-0 px-0">
+                                                         <label for="ref">Widget Size</label>
+                                                         <div class="table_cell_selection">
+                                                             <div class="col-md-12 p-0">
+                                                                <table class="table table-bordered table-inverse" summary="" id="tablecellsselection">
+                                                                    <tbody>
+                                                                    <tr>
+                                                                        <td id="select11">1,1</td>
+                                                                        <td id="select12">1,2</td>
+                                                                        <td id="select13">1,3</td>
+                                                                        <td id="select14">1,4</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td id="select21">2,1</td>
+                                                                        <td id="select22">2,2</td>
+                                                                        <td id="select23">2,3</td>
+                                                                        <td id="select24">2,4</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                         <td id="select31">3,1</td>
+                                                                         <td id="select32">3,2</td>
+                                                                         <td id="select33">3,3</td>
+                                                                         <td id="select34">3,4</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                         <td id="select41">4,1</td>
+                                                                         <td id="select42">4,2</td>
+                                                                         <td id="select43">4,3</td>
+                                                                         <td id="select44">4,4</td>
+                                                                    </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                             <div class="table_output_parent">
+                                                                 <span>
+                                                                     <i class="px-2" style="font-size: 12px;">Selected Cells : </i>
+                                                                     <input class="output_val_table" type="text" required name="widget_size" id="output" ng-class="{ 'is-invalid' : (!add_widget_form.widget_size.$valid && stepValidity)}" disabled>
+                                                                     <div class="invalid-feedback">
+                                                                        Please provide a Valid Widget Size.
+                                                                    </div>
+                                                                 </span>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="form-group col-lg-6 float-left px-0">
+                                                         <label for="inputPassword4">Description</label>
+                                                         <textarea class="form-control" name="widget_description" rows="3" required ng-model="form.description" ng-class="{ 'is-invalid' : !form.description && stepValidity ||  (add_widget_form.widget_description.$dirty && !form.description )}"></textarea>
+                                                         <div class="invalid-feedback">
+                                                            Please provide a Valid Widget Description.
+                                                        </div>
+                                                     </div> 
+                                                     
+                                                     <div class="form-group col-lg-12 float-left px-0 mb-0" ng-if="form.type=='chart' || form.type=='number' || form.type=='action' || form.type=='media' || form.type=='map'">
+                                                         <label for="ref">Types</label>
+                                                         <div class="wid_type_list" ng-class="{'is-invalid' : (!form.category && stepValidity)}">
+                                                             <ul ng-class="{custom_subtype: form.type!='chart'}">
+                                                                 <li ng-if="form.type=='chart'" ng-repeat="chartType in chartTypes"
+                                                                     ng-class="{checked: form.category == chartType.value}">
+                                                                     <div class="form-check">
+                                                                         <input type="radio" class="form-check-input" id={{"widget_sublist"+$index}}
+                                                                             name="widget_sublist" value={{chartType.value}}
+                                                                             ng-model="form.category" ng-checked="form.category">
+                                                                         <label class="form-check-label" for={{"widget_sublist"+$index}}><img
+                                                                                 ng-src="/client/assets/images/charts/{{chartType.image}}.png">{{chartType.name}}</label>
+                                                                     </div>
+                                                                 </li>
+                                                                 <li ng-if="form.type=='number'" ng-repeat="numberType in numberTypes"
+                                                                     ng-class="{checked: form.category == numberType.value}">
+                                                                     <div class="form-check">
+                                                                         <input type="radio" class="form-check-input" id={{"widget_sublist"+$index}}
+                                                                             name="widget_sublist" value={{numberType.value}}
+                                                                             ng-model="form.category" ng-checked="form.category">
+                                                                         <label class="form-check-label" for={{"widget_sublist"+$index}}><img
+                                                                                 ng-src="/client/assets/images/charts/{{numberType.image}}.png">{{numberType.name}}</label>
+																	 	
+                                                                     </div>
+                                                                 </li>
+                                                                 <li ng-if="form.type=='action'" ng-repeat="actionType in actionTypes"
+                                                                     ng-class="{checked: form.category == actionType.value}">
+                                                                     <div class="form-check">
+                                                                         <input type="radio" class="form-check-input" id={{"widget_sublist"+$index}}
+                                                                             name="widget_sublist" value={{actionType.value}}
+                                                                             ng-model="form.category" ng-checked="form.category">
+                                                                         <label class="form-check-label" for={{"widget_sublist"+$index}}><img
+                                                                                 ng-src="/client/assets/images/charts/{{actionType.image}}.png">{{actionType.name}}</label>
+                                                                     </div>
+                                                                 </li>
+                                                                 <li ng-if="form.type=='media'" ng-repeat="mediaType in mediaTypes"
+                                                                     ng-class="{checked: form.category == mediaType.value}">
+                                                                     <div class="form-check">
+                                                                         <input type="radio" class="form-check-input" id={{"widget_sublist"+$index}}
+                                                                             name="widget_sublist" value={{mediaType.value}}
+                                                                             ng-model="form.category" ng-checked="form.category">
+                                                                         <label class="form-check-label" for={{"widget_sublist"+$index}}><img
+                                                                                 ng-src="/client/assets/images/charts/{{mediaType.image}}.png">{{mediaType.name}}</label>
+                                                                     </div>
+                                                                 </li>
+                                                                 <li ng-if="form.type=='map'" ng-repeat="mapType in mapTypes"
+                                                                     ng-class="{checked: form.category == mapType.value}">
+                                                                     <div class="form-check">
+                                                                         <input type="radio" class="form-check-input" id={{"widget_sublist"+$index}}
+                                                                             name="widget_sublist" value={{mapType.value}}
+                                                                             ng-model="form.category" ng-checked="form.category">
+                                                                         <label class="form-check-label" for={{"widget_sublist"+$index}}><img
+                                                                                 ng-src="/client/assets/images/charts/{{mapType.image}}.png">{{mapType.name}}</label>
+                                                                     </div>
+                                                                 </li>
+                                                             </ul>
+                                                         </div>
+                                                         <div class="invalid-feedback">
+                                                            Please provide a Valid Widget Category.
+                                                        </div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                 </fieldset>
+                                             </div>
+                                             <div ng-show="selection=='Data Source Configuration'">
+                                                 <fieldset>                                                    
+                                                        <div class="custom-control custom-checkbox custom-control-inline col-lg-12" ng-if="form.type=='chart' || form.type=='number' ||form.type=='map'">
+                                                                <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" ng-model="form.livecheckbox">
+                                                                <label class="custom-control-label" for="customCheck">Live</label>
+                                                            </div>
+                                                         <div ng-if="form.type=='calendar'||form.type=='table'">                                                           
+                                                            <div class="form-group col-lg-11 pl-0 float-left" >
+                                                                 <label for="name">Name of Data Source</label>
+                                                                 <ui-select class="form-control p-0" ng-model="dataSourceSelected" ng-change="dataSourceChange(dataSourceSelected)"
+                                                                     theme="select2" style="min-width: 300px;" title="Choose a Data Source"
+                                                                     append-to-body="true" ng-class="{'is-invalid' : (!form.configuration.hasOwnProperty('dataSourceSelected') && stepValidity)}">
+                                                                     <ui-select-match placeholder="Data Source">{{$select.selected.DataSourceName}}</ui-select-match>
+                                                                     <ui-select-choices repeat="config in apiConfigList | propsFilter: {DataSourceName: $select.search}">
+                                                                         <div ng-bind-html="config.DataSourceName | highlight: $select.search"></div>
+                                                                     </ui-select-choices>
+                                                                 </ui-select>
+                                                                 <div class="invalid-feedback">
+                                                                    Please provide a Valid Data Source.
+                                                                </div>
+                                                             </div>
+                                                             <a href="JavaScript:Void(0);" class="col-md-1 float-right add_data_source_pls mt-lg-4 mt-1 mb-lg-0 mb-3" ng-click="addDataSource()">+</a>
+                                                             <div class="form-group col-lg-12 float-left px-0 pb-3" ng-if="form.configuration.dataSourceSelected">
+                                                                 <label for="refresh">Refresh Frequency (seconds)</label>
+                                                                 <rzslider rz-slider-model="form.configuration.updateFrequency"
+                                                                     rz-slider-options="slider.options">
+                                                                 x</rzslider>
+                                                             </div>
+                                                         </div>
+                                                         <div ng-if="form.type=='chart' || form.type=='number' || form.type=='map'">
+                                                             <div ng-show="form.livecheckbox">                                                        
+                                                            <div class="form-group col-lg-11 pl-0 float-left" >
+                                                                <label for="name">Name of Data Source</label>
+                                                                <ui-select class="form-control p-0" ng-model="dataSourceSelected" ng-change="dataSourceChange(dataSourceSelected)"
+                                                                    theme="select2" style="min-width: 300px;" title="Choose a Data Source"
+                                                                    append-to-body="true" ng-class="{'is-invalid' : (!form.configuration.hasOwnProperty('dataSourceSelected') && stepValidity)}">
+                                                                    <ui-select-match placeholder="Data Source">{{$select.selected.DataSourceName}}</ui-select-match>
+                                                                    <ui-select-choices repeat="config in apiSignalrRConfigList | propsFilter: {DataSourceName: $select.search}">
+                                                                        <div ng-bind-html="config.DataSourceName | highlight: $select.search"></div>
+                                                                    </ui-select-choices>
+                                                                </ui-select>                                                                  
+                                                                <div class="invalid-feedback">
+                                                                   Please provide a Valid Data Source.
+                                                               </div>
+                                                            </div>
+                                                            <a href="JavaScript:Void(0);" class="col-md-1 float-right add_data_source_pls mt-lg-4 mt-1 mb-lg-0 mb-3" ng-click="addDataSource()">+</a>
+														 	 <div class="form-group col-lg-12 float-left px-0 pb-3" ng-if="form.configuration.dataSourceSelected">
+                                                                    <label for="refresh">Message Limit</label>
+                                                                    <rzslider rz-slider-model="form.configuration.SignalRMessageLimit"
+                                                                        rz-slider-options="SignalRslider.options">
+                                                                    x</rzslider>
+                                                                </div>
+                                                        </div> 
+
+                                                        <!-- Without Live -->
+                                                        <div ng-hide="form.livecheckbox">                                                        
+                                                        <div class="form-group col-lg-11 pl-0 float-left" >
+                                                            <label for="name">Name of Data Source</label>
+                                                            <ui-select class="form-control p-0" ng-model="dataSourceSelected" ng-change="dataSourceChange(dataSourceSelected)"
+                                                                theme="select2" style="min-width: 300px;" title="Choose a Data Source"
+                                                                append-to-body="true" ng-class="{'is-invalid' : (!form.configuration.hasOwnProperty('dataSourceSelected') && stepValidity)}">
+                                                                <ui-select-match placeholder="Data Source">{{$select.selected.DataSourceName}}</ui-select-match>
+                                                                <ui-select-choices repeat="config in apiConfigList | propsFilter: {DataSourceName: $select.search}">
+                                                                    <div ng-bind-html="config.DataSourceName | highlight: $select.search"></div>
+                                                                </ui-select-choices>
+                                                            </ui-select>                                                         
+                                                            <div class="invalid-feedback">
+                                                               Please provide a Valid Data Source.
+                                                           </div>
+                                                        </div>
+                                                        <a href="JavaScript:Void(0);" class="col-md-1 float-right add_data_source_pls mt-lg-4 mt-1 mb-lg-0 mb-3" ng-click="addDataSource()">+</a>
+                                                        <div class="form-group col-lg-12 float-left px-0 pb-3" ng-if="form.configuration.dataSourceSelected">
+                                                            <label for="refresh">Refresh Frequency (seconds)</label>
+                                                            <rzslider rz-slider-model="form.configuration.updateFrequency"
+                                                                rz-slider-options="slider.options">
+                                                            x</rzslider>
+                                                        </div>
+                                                         </div>
+                                                         </div>
+                                                    
+                                                     <div class="clearfix"></div>
+                                                     
+                                                     <div ng-if="form.type=='powerbi'">
+                                                         <div ng-init="accordion=1">
+                                                             <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                 <a href ng-click="accordion = 1">Enter Power Bi URL</a>
+                                                             </h6>
+                                                             <div class="accordion-content" ng-show="accordion==1">
+                                                                 <div class="form-group">
+                                                                     <label class="control-label">Data Source Endpoint</label>
+                                                                     <input maxlength="200" type="text" required="required"
+                                                                         class="form-control" placeholder="Enter Data Source URL"
+                                                                         ng-model="form.configuration.dataSourceSelected.url" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                         <div class="invalid-feedback">
+                                                                            Please provide a Valid Data Source.
+                                                                        </div>                                                                 
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div ng-if="form.type=='webpage'">
+                                                         <div ng-init="accordion=1">  
+                                                             <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                 <a href ng-click="accordion = 2">Enter Web URL</a>
+                                                             </h6>
+                                                             <div class="accordion-content" ng-show="accordion==1">
+                                                                 <div class="form-group">
+                                                                     <label class="control-label">Data Source Endpoint</label>
+                                                                     <input maxlength="200" type="text" required="required"
+                                                                         class="form-control" placeholder="Enter Data Source URL"
+                                                                         ng-model="form.configuration.dataSourceSelected.url" ng-class="{'is-invalid' :((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                         <div class="invalid-feedback">
+                                                                            Please provide a Valid Data Source.
+                                                                        </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div ng-if="form.type=='media'">
+                                                         <div ng-if="form.category=='image'">
+                                                             <div ng-init="accordion=1">
+                                                                 <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                     <a href ng-click="accordion = 1">Enter Image URL</a>
+                                                                 </h6>
+                                                                 <div class="accordion-content" ng-show="accordion==1">
+                                                                     <div class="form-group">
+                                                                         <label class="control-label">Data Source
+                                                                             Endpoint</label>
+                                                                         <input maxlength="200" type="text" required="required"
+                                                                             class="form-control" placeholder="Enter Data Source URL"
+                                                                             ng-model="form.configuration.dataSourceSelected.url" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                             <div class="invalid-feedback">
+                                                                                Please provide a Valid Data Source.
+                                                                            </div>
+                                                                     </div>
+                                                                 </div>
+ 
+                                                                 <h6 class="accordion" ng-class="{active:accordion==2}">
+                                                                     <a href ng-click="accordion = 2">Upload a Image</a>
+                                                                 </h6>
+                                                                 <div class="accordion-content" ng-show="accordion==2">
+                                                                     <div class="form-group m-form__group row">
+                                                                         <div class="col-lg-12">
+                                                                             <label class="form-control-label ">
+                                                                                 Picture:
+                                                                             </label>
+                                                                             <input type="file" ngf-select ng-model="imgaeForUpload"
+                                                                                 ngf-pattern="'image/*'" accept="image/*"
+                                                                                 ngf-max-size="20MB" ng-change="fileUpload(imgaeForUpload)" />
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="form-group m-form__group row">
+                                                                         <div class="col-lg-12">
+                                                                             <label class="form-control-label">
+                                                                                 Image thumbnail:
+                                                                             </label>
+                                                                             <img style="width: 150px;margin-left: 20px;"
+                                                                                 ngf-thumbnail="imgaeForUpload" />
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <!-- Carousel -->
+                                                         <div ng-if="form.category=='carousel'">
+                                                                <div class="form-group col-lg-11 pl-0 float-left" >
+                                                                        <label for="name">Name of Data Source</label>
+                                                                        <ui-select class="form-control p-0" ng-model="dataSourceSelected" ng-change="dataSourceChange(dataSourceSelected)"
+                                                                            theme="select2" style="min-width: 300px;" title="Choose a Data Source"
+                                                                            append-to-body="true" ng-class="{'is-invalid' : (!form.configuration.hasOwnProperty('dataSourceSelected') && stepValidity)}">
+                                                                            <ui-select-match placeholder="Data Source">{{$select.selected.DataSourceName}}</ui-select-match>
+                                                                            <ui-select-choices repeat="config in apiSharePointConfigList | propsFilter: {DataSourceName: $select.search}">
+                                                                                <div ng-bind-html="config.DataSourceName | highlight: $select.search"></div>
+                                                                            </ui-select-choices>
+                                                                        </ui-select>                                                         
+                                                                        <div class="invalid-feedback">
+                                                                           Please provide a Valid Data Source.
+                                                                       </div>
+                                                                    </div>
+                                                        </div>
+                                                         <div ng-if="form.category=='audio'">
+                                                             <div ng-init="accordion=1">                                                                
+                                                                 <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                     <a href ng-click="accordion = 1">Enter mp3 audio URL</a>
+                                                                 </h6>
+                                                                 <div class="accordion-content" ng-show="accordion==1">
+                                                                     <div class="form-group">
+                                                                         <label class="control-label">Data Source
+                                                                             Endpoint</label>
+                                                                         <input maxlength="200" type="text" required="required"
+                                                                             class="form-control" placeholder="Enter Data Source URL"
+                                                                             ng-model="form.configuration.dataSourceSelected.url" ng-change="mediaType('mp3')" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                             <div class="invalid-feedback">
+                                                                                Please provide a Valid Data Source.
+                                                                            </div>
+                                                                     </div>
+                                                                 </div>
+                                                                                                                                                                               
+                                                                 <h6 class="accordion" ng-class="{active:accordion==2}">
+                                                                     <a href ng-click="accordion = 2">Enter Audio URL to Embed</a>
+                                                                 </h6>
+                                                                 <div class="accordion-content" ng-show="accordion==2">
+                                                                     <div class="form-group">
+                                                                         <label class="control-label">Data Source
+                                                                             Endpoint</label>
+                                                                         <input maxlength="200" type="text" required="required"
+                                                                             class="form-control" placeholder="Enter Data Source URL"
+                                                                             ng-model="form.configuration.dataSourceSelected.url" ng-change="mediaType('externalLink')" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                             <div class="invalid-feedback">
+                                                                                Please provide a Valid Data Source.
+                                                                            </div>
+                                                                     </div>
+                                                                 </div> 
+                                                             </div>                                                         
+                                                         </div>
+                                                         <div ng-if="form.category=='video'">
+                                                             <div ng-init="accordion=1">                                                               
+                                                                 <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                     <a href ng-click="accordion = 1">Enter Video URL to Embed</a>
+                                                                 </h6>
+                                                                 <div class="accordion-content" ng-show="accordion==1">
+                                                                     <div class="form-group">
+                                                                         <label class="control-label">Data Source
+                                                                             Endpoint</label>
+                                                                         <input maxlength="200" type="text" required="required"
+                                                                             class="form-control" placeholder="Enter Data Source URL"
+                                                                             ng-model="form.configuration.dataSourceSelected.url" ng-change="mediaType('externalLink')" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                             <div class="invalid-feedback">
+                                                                                Please provide a Valid Data Source.
+                                                                            </div>
+                                                                     </div>
+                                                                 </div>                                                                                                                         
+                                                                 <h6 class="accordion" ng-class="{active:accordion==2}">
+                                                                     <a href ng-click="accordion = 2">Enter mp4 Video URL</a>
+                                                                 </h6>
+                                                                 <div class="accordion-content" ng-show="accordion==2">
+                                                                     <div class="form-group">
+                                                                         <label class="control-label">Data Source
+                                                                             Endpoint</label>
+                                                                         <input maxlength="200" type="text" required="required"
+                                                                             class="form-control" placeholder="Enter Data Source URL"
+                                                                             ng-model="form.configuration.dataSourceSelected.url" ng-change="mediaType('mp4')" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                             <div class="invalid-feedback">
+                                                                                Please provide a Valid Data Source.
+                                                                            </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>                                                            
+                                                         </div>
+                                                     </div>
+                                                     <div ng-if="form.type=='action'">
+                                                         <div class="form-group">
+                                                             <label class="control-label">Data Source Endpoint</label>
+                                                             <input maxlength="200" type="text" required="required"
+                                                                 class="form-control" placeholder="Enter Data Source URL"
+                                                                 ng-model="form.configuration.dataSourceSelected.url" ng-class="{'is-invalid' : ((!form.configuration.hasOwnProperty('dataSourceSelected') || !form.configuration.dataSourceSelected.url) && stepValidity)}"/>
+                                                                 <div class="invalid-feedback">
+                                                                    Please provide a Valid Data Source.
+                                                                </div>
+                                                         </div>
+                                                     </div>
+                                                   </fieldset>
+                                             </div>                                            
+                                             <div ng-show="selection=='Preview'">
+                                                 <div class="my-3 col-lg-12 bg-white text-center py-4 nodata height_62vh">
+                                                                 <div ng-if="form.category=='number'" style="height:100%;text-align:center">
+                                                                     <div cg-busy="{promise:dashboardDisplayData[form.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                                                         <span class="number_count">{{dashboardTile[form.id].value}}</span>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='numberUnit'" style="height:100%;text-align:center">
+                                                                     <div cg-busy="{promise:dashboardDisplayData[form.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                                                         <span class="number_count">{{dashboardTile[form.id].value}}</span>
+                                                                         <span>{{dashboardTile[form.id].unit}}</span>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div ng-if="form.type=='chart'" style="height:98%;">
+                                                                     <div cg-busy="{promise:dashboardDisplayData[form.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}"></div>
+                                                                     <nvd3 id="chart" options="demoChart[form.id]" data="dashboardTile[form.id]"></nvd3>
+                                                                 </div>                                                                 
+                                                                 <div ng-if="form.category=='image'" style="height:100%; text-align: center;">
+                                                                     <img style="height: 100%; max-width: 100%;" ng-src="{{form.configuration.dataSourceSelected.url}}">
+                                                                 </div>
+                                                                <div ng-if="form.category=='carousel'" style="height:100%; text-align: center;"> <!-- -- Media Image widget -- -->
+                                                                    <!-- <slick class="slider" settings="slickConfig[form.id]" ng-if="slickConfig1Loaded[form.id]" >
+                                                                    <div ng-repeat="item in carouselItems[form.id]" >
+                                                                     <img  style="height: 100%;" ng-src="{{ item.url }}"  />
+                                                                    </div> 
+                                                                    </slick>    -->
+                                                                    <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="700" data-interval="4000" ng-if="slickConfig1Loaded[form.id]">
+                                                                            <div class="resCarousel-inner template">
+                                                                                <div class="item" ng-repeat="item in carouselItems[form.id]">
+                                                                                        <div class="dash_box">
+                                                                                            <a href="JavaScript:Void(0);" class="w-100 float-left text-center position-relative">
+                                                                                                <img class="widget_carousel" ng-src="{{item.url}}" />
+                                                                                            </a>
+                                                                                        </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <a href="javascript:void(0)" class="rightRs"><span class="icon-arrow-lewft"></span></a>
+                                                                            <a href="javascript:void(0)" class="leftRs"><span class="icon-arrow-lewft"></span></a>
+                                                                    </div>
+                                                                </div>
+                                                                 <div ng-if="form.type=='table'" style="height:100%;width: 100%;">
+                                                                     <div ag-grid="gridOptions" style="height: 99%;" class="ag-theme-balham"></div>
+                                                                 </div>
+                                                                 <div ng-if="form.type=='webpage'" style="height:100%;">
+                                                                     <iframe ng-src="{{form.configuration.dataSourceSelected.url | trusted}}" style="height:100%;width: 100%">
+                                                                     </iframe>
+                                                                 </div>
+                                                                 <div ng-if="form.type=='powerbi'" style="height:100%;">
+                                                                     <iframe style="height:100%;width: 100%" ng-src="{{form.configuration.dataSourceSelected.url | trusted}}"
+                                                                         frameborder="0" allowFullScreen="true">
+                                                                     </iframe>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='video' && form.configuration.dataSourceSelected.type=='externalLink'" style="height:100%;">
+                                                                     <iframe width="100%" class="video_height" ng-src="{{form.configuration.dataSourceSelected.url | trusted}}"></iframe>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='video' && form.configuration.dataSourceSelected.type=='mp4'" style="height:100%;">
+                                                                     <video class="video_height" width="100%" controls>
+                                                                         <source ng-src="{{form.configuration.dataSourceSelected.url | trusted}}" type="video/mp4">
+                                                                         Your browser does not support HTML5 video.
+                                                                         </video>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='audio' && form.configuration.dataSourceSelected.type=='externalLink'" style="height:100%;">
+                                                                     <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" ng-src="{{form.configuration.dataSourceSelected.url | trusted}}"></iframe>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='audio' && form.configuration.dataSourceSelected.type=='mp3'" style="height:100%;">
+                                                                 
+                                                                     <audio id="t-rex-roar-loop" controls>
+                                                                     <source type="audio/mpeg" ng-src="{{form.configuration.dataSourceSelected.url | trusted}}"/>
+                                                                     Your browser does not support the <code>audio</code> element.
+                                                                     </audio>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='markerMap'" style="height:100%;">
+                                                                     <div id={{"map"+form.id}} style="height:100%;width:100%"></div>
+                                                                 </div>
+                                                                 <div ng-if="form.category=='heatMap'" style="height:100%;">
+                                                                     <div id={{"heatmap"+form.id}} style="height:100%;width:100%"></div>
+                                                                 </div>
+                                                                 <div ng-if="form.type=='action'" style="height:100%;">
+                                                                         <a class="widget_action" ng-href="{{form.configuration.dataSourceSelected.url | trusted}}" target="_blank">{{form.configuration.dataSourceSelected.url}}</a> 
+                                                                  </div>
+                                                                 <div class="calendar_main" ng-if="form.type=='calendar'" data="dashboardTile[form.id]" dhx-scheduler style="height:100%;">
+                                                                     <div class="dhx_cal_date"></div>
+                                         
+                                                                 <div class="calendar_ctrls">
+                                                                     <div class="dhx_cal_prev_button">&nbsp;</div>
+                                                                     <div class="dhx_cal_next_button">&nbsp;</div>
+                                                                     <div class="dhx_cal_today_button"></div>
+                                                                     <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+                                                                     <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+                                                                     <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+                                                                 </div>
+                                                                     <div dhx-template="event_bar_text">
+                                                                         <strong>#{{dashboardTile[form.id].id}}</strong>: {{dashboardTile[form.id].text | uppercase}}
+                                                                     </div>
+                                                                     <div>
+                                                                     </div>
+                                                                 </div>     
+                                                                       
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div>
+                                             <div ng-if="getCurrentStepIndex()==2">
+                                                 <button class="submit btn btn-primary float-right ml-3 mt-3"
+                                                     type="button" ng-click="submitConfiguration()" ng-disabled="widgetChartStatusFlag">Submit</button>
+                                             </div>
+                                             <div ng-if="getCurrentStepIndex()==0">
+                                                 <button class="next btn btn-primary float-right ml-3 mt-3" type="button"
+                                                     ng-click="incrementStep(form)">Next</button>
+                                             </div>
+                                             <div ng-if="getCurrentStepIndex()==1">
+                                                <button class="next btn btn-primary float-right ml-3 mt-3" type="button"
+                                                    ng-click="incrementStep(form);loadPreview(form)">Next</button>
+                                            </div>
+                                             <div ng-if="getCurrentStepIndex()!=0">
+                                                 <button class="previous btn btn-primary float-right mt-3 ml-3" type="button"
+                                                     ng-click="decrementStep()">Previous</button>
+                                             </div>
+                                             <div>
+                                                 <button class="btn btn-primary float-right ml-3 mt-3 add_dashboard_main_close" ng-click="closePreviewConnection()" type="button" >Cancel</button>
+                                             </div>
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+ 
+                         <div class="col-lg-12 add_data_source_main position-absolute">
+                             <div class="position-relative w-100 p-3">
+                                 <h3 class="custom_h3 mb-2 mt-3">New Data Source</h3>
+                                 <form id="msform" name="add_datasource_form">
+                                     <fieldset class="bg-white py-2">
+                                        <div class="sub_data_source col-lg-6 float-left">
+                                             <div class="form-group col-lg-12 float-left px-0">
+                                                 <label for="name">Name of Data Source</label>
+                                                 <input type="text" class="form-control" id="name" placeholder="Name of Data Source"
+                                                     required ng-model="newDataSource.dataSourceName" name="datasource_name" ng-class="{ 'is-invalid' : (!add_datasource_form.datasource_name.$valid && add_datasource_form.datasource_name.$dirty)}">
+                                                     <div class="invalid-feedback">
+                                                        Please provide a valid Data Source Name.
+                                                    </div>
+                                             </div>
+                                             <div class="form-group col-lg-12 float-left px-0">
+
+                                                 <label for="name">Refresh Frequency (seconds)</label>
+                                                 <div ng-init="newDataSource.dataSourceRefreshTime=300">
+                                                     <rzslider rz-slider-model="newDataSource.dataSourceRefreshTime"
+                                                         rz-slider-options="slider.options"></rzslider>
+                                                 </div>
+                                             </div>
+                                             <div class="form-group col-lg-12 float-left px-0">
+                                                 <label for="name">Retry Frequency</label>
+                                                 <div ng-init="newDataSource.dataSourceRetryFrequency=3">
+                                                     <rzslider rz-slider-model="newDataSource.dataSourceRetryFrequency"
+                                                         rz-slider-options="addWidgetSlider.options"></rzslider>
+                                                 </div>
+                                             </div>
+                                             <div class="form-group col-lg-12 float-right px-0">
+                                                 <label for="name">API Type</label>
+                                                 <select class="form-control " id="exampleFormControlSelect2" required
+                                                     ng-model="newDataSource.dataSourceRequestType" ng-init="newDataSource.dataSourceRequestType='rest'" name="datasource_type">
+                                                     <option value="rest">REST</option>
+                                                     <option value="webhook">Webhook</option>
+                                                     <option value="signalr">SignalR</option>
+													 <option value="sharepoint">SharePoint Config</option>                                                     
+                                                 </select>
+                                             </div>
+                                        </div>
+                                         <div class="postmen col-lg-6 col-md-12 float-right">
+                                        <!-- SharePoint-->
+                                        <div ng-if="newDataSource.dataSourceRequestType=='sharepoint'">
+                                                <label style="visibility: hidden;" for="name">Data Source Configuration</label>
+                                                <div class="clearfix"></div>
+                                             <div class="form-group col-lg-4 float-left px-0">
+                                                 <select class="form-control" id="exampleFormControlSelect2" required
+                                                     ng-model="newDataSource.dataSourceRestType" ng-init="newDataSource.dataSourceRestType='get'">
+                                                     <option value="post">POST</option>
+                                                     <option value="get">GET</option>
+                                                     <option value="put" disabled>PUT</option>
+                                                     <option value="delete" disabled>DELETE</option>
+                                                 </select>
+                                             </div>
+                                             <div class="form-group col-lg-8 float-left pl-md-3 px-sm-0 px-0">
+                                                 <input type="text" class="form-control" id="name" placeholder="Enter URL"
+                                                     required ng-model="newDataSource.dataSourceSharePointURL"  name="datasourcesharepoint_url" ng-class="{ 'is-invalid' : (!add_datasource_form.datasourcesharepoint_url.$valid && add_datasource_form.datasourcesharepoint_url.$dirty)}">
+                                                     <div class="invalid-feedback">
+                                                        Please provide a Data Source URL.
+                                                    </div> 
+                                             </div>
+                                             <div class="clearfix"></div>
+                                             <!-- Nav tabs -->
+                                             <div class="w-100 add_data_source_tab">
+                                                 <ul class="tabs">
+                                                     <li class="tab-link current" data-tab="tab-1">Header</li>
+                                                     <li class="tab-link" data-tab="tab-2" ng-if="newDataSource.dataSourceRestType=='post'">Body</li>
+                                                 </ul> 
+                                                 <div id="tab-1" class="tab-content current">
+                                                     <div class="clearfix"></div>
+                                                     <div class="tab_content_inner position-relative col-lg-12 px-0">
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Client Id:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Client Id" required ng-model="newDataSource.dataSourceHeaders[0].key">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Value:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Client Secret" required ng-model="newDataSource.dataSourceHeaders[0].value">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="clearfix"></div>
+                                                         <div class="clone_source" ng-repeat="obj in requestHeader.children">
+                                                             <div class="clearfix"></div>
+                                                             <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                                 <label for="name">Client Id:</label>
+                                                                 <input type="text" class="form-control" name="name" id="email"
+                                                                     placeholder="Enter Client Id" required ng-model="newDataSource.dataSourceHeaders[$index+1].key">
+                                                                 <div class="help-block with-errors"></div>
+                                                             </div>
+                                                             <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                                 <label for="name">Value:</label>
+                                                                 <input type="text" class="form-control" name="name" id="email"
+                                                                     placeholder="Enter Client Secret" required ng-model="newDataSource.dataSourceHeaders[$index+1].value">
+                                                                 <div class="help-block with-errors"></div>
+                                                             </div>
+                                                         </div>
+                                                         <a href="javascript:void(0)" class="col-lg-1 float-left add_data_source_pls_inner mt-4"
+                                                             ng-click="addHeaderChild()">+</a>
+                                                         <div class="clearfix"></div>
+                                                     </div>
+                                                 </div>
+                                                 <div id="tab-2" class="tab-content">
+                                                     <div class="clearfix"></div>
+                                                     <div class="tab_content_inner position-relative col-lg-12 px-0">
+                                                     <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                         <label for="name">Client Id:</label>
+                                                         <input type="text" class="form-control" name="name" id="email"
+                                                             placeholder="Enter Client Id" required ng-model="newDataSource.dataSourceBody[0].key">
+                                                         <div class="help-block with-errors"></div>
+                                                     </div>
+                                                     <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                         <label for="name">Value:</label>
+                                                         <input type="text" class="form-control" name="name" id="email"
+                                                             placeholder="Enter Client Secret" required ng-model="newDataSource.dataSourceBody[0].value">
+                                                         <div class="help-block with-errors"></div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                     <div class="clone_source" ng-repeat="obj in requestBody.children">
+                                                         <div class="clearfix"></div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Client Id:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Client Id" required ng-model="newDataSource.dataSourceBody[$index+1].key">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Client Secret:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Client Secret" required ng-model="newDataSource.dataSourceBody[$index+1].value">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                     <a href="javascript:void(0)" class="col-lg-2 float-left add_data_source_pls_inner mt-4"
+                                                         ng-click="addBodyChild()">+</a>
+                                                     <div class="clearfix"></div>
+                                                     </div>
+                                                 </div>
+
+                                             </div> 
+                                             <div class="clearfix"></div>
+                                         </div>
+                                        <!-- SignalR -->
+										 <div ng-if="newDataSource.dataSourceRequestType=='signalr'">
+                                                        <div ng-init="accordion=1">
+                                                                <h6 class="accordion" ng-class="{active:accordion==1}">
+                                                                    <a href ng-click="accordion = 1">Enter SignalR  URL</a>
+                                                                </h6>
+                                                        <div class="accordion-content" ng-show="accordion==1">
+                                                                <div class="form-group">
+                                                                    <label class="control-label">Data Source
+                                                                        Endpoint</label>
+                                                                    <input maxlength="200" type="text" required="required"
+                                                                        class="form-control" placeholder="Enter Data Source URL" ng-model="newDataSource.dataSourceSignalRURL" name="datasourcesignalr_url" ng-class="{ 'is-invalid' : (!add_datasource_form.datasourcesignalr_url.$valid && add_datasource_form.datasourcesignalr_url.$dirty)}">
+                                                                        <div class="invalid-feedback">
+                                                                           Please provide a Valid Data Source.
+                                                                       </div>
+                                                                       <label for="name">Method Name</label>
+                                                                    <input type="text" class="form-control" id="name" placeholder="Method Name"
+                                                                        required ng-model="newDataSource.dataSourceMethodName" name="datasourcemethod_name" ng-class="{ 'is-invalid' : (!add_datasource_form.datasourcemethod_name.$valid && add_datasource_form.datasourcemethod_name.$dirty)}">
+                                                                        <div class="invalid-feedback">
+                                                                           Please provide a valid Method Name.
+                                                                       </div>
+                                                                </div>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="form-group col-lg-12 float-left px-0 mb-3">
+                                                                <label for="name" class="mb-2">MessageLimit</label>
+                                                                <div >
+                                                                    <rzslider rz-slider-model="newDataSource.datasourceSignalRMessageLimit"
+                                                                        rz-slider-options="SignalRslider.options"></rzslider>
+                                                                </div>                                             
+                                                        </div>                                                  
+                                                </div>
+                                            <div ng-if="newDataSource.dataSourceRequestType=='rest'">
+                                                <label style="visibility: hidden;" for="name">Data Source Configuration</label>
+                                                <div class="clearfix"></div>
+                                             <div class="form-group col-lg-4 float-left px-0">
+                                                 <select class="form-control" id="exampleFormControlSelect2" required
+                                                     ng-model="newDataSource.dataSourceRestType" ng-init="newDataSource.dataSourceRestType='get'">
+                                                     <option value="post">POST</option>
+                                                     <option value="get">GET</option>
+                                                     <option value="put" disabled>PUT</option>
+                                                     <option value="delete" disabled>DELETE</option>
+                                                 </select>
+                                             </div>
+                                             <div class="form-group col-lg-8 float-left pl-md-3 px-sm-0 px-0">
+                                                 <input type="text" class="form-control" id="name" placeholder="Enter URL"
+                                                     required ng-model="newDataSource.dataSourceRestURL"  name="datasource_url" ng-class="{ 'is-invalid' : (!add_datasource_form.datasource_url.$valid && add_datasource_form.datasource_url.$dirty)}">
+                                                     <div class="invalid-feedback">
+                                                        Please provide a Data Source URL.
+                                                    </div> 
+                                             </div>
+                                             <div class="clearfix"></div>
+                                             <!-- Nav tabs -->
+                                             <div class="w-100 add_data_source_tab">
+                                                 <ul class="tabs">
+                                                     <li class="tab-link current" data-tab="tab-1">Header</li>
+                                                     <li class="tab-link" data-tab="tab-2" ng-if="newDataSource.dataSourceRestType=='post'">Body</li>
+                                                 </ul> 
+                                                 <div id="tab-1" class="tab-content current">
+                                                     <div class="clearfix"></div>
+                                                     <div class="tab_content_inner position-relative col-lg-12 px-0">
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Key:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Key" required ng-model="newDataSource.dataSourceHeaders[0].key">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Value:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Value" required ng-model="newDataSource.dataSourceHeaders[0].value">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="clearfix"></div>
+                                                         <div class="clone_source" ng-repeat="obj in requestHeader.children">
+                                                             <div class="clearfix"></div>
+                                                             <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                                 <label for="name">Key:</label>
+                                                                 <input type="text" class="form-control" name="name" id="email"
+                                                                     placeholder="Enter Key" required ng-model="newDataSource.dataSourceHeaders[$index+1].key">
+                                                                 <div class="help-block with-errors"></div>
+                                                             </div>
+                                                             <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                                 <label for="name">Value:</label>
+                                                                 <input type="text" class="form-control" name="name" id="email"
+                                                                     placeholder="Enter Value" required ng-model="newDataSource.dataSourceHeaders[$index+1].value">
+                                                                 <div class="help-block with-errors"></div>
+                                                             </div>
+                                                         </div>
+                                                         <a href="javascript:void(0)" class="col-lg-1 float-left add_data_source_pls_inner mt-4"
+                                                             ng-click="addHeaderChild()">+</a>
+                                                         <div class="clearfix"></div>
+                                                     </div>
+                                                 </div>
+                                                 <div id="tab-2" class="tab-content">
+                                                     <div class="clearfix"></div>
+                                                     <div class="tab_content_inner position-relative col-lg-12 px-0">
+                                                     <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                         <label for="name">Key:</label>
+                                                         <input type="text" class="form-control" name="name" id="email"
+                                                             placeholder="Enter Key" required ng-model="newDataSource.dataSourceBody[0].key">
+                                                         <div class="help-block with-errors"></div>
+                                                     </div>
+                                                     <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                         <label for="name">Value:</label>
+                                                         <input type="text" class="form-control" name="name" id="email"
+                                                             placeholder="Enter Value" required ng-model="newDataSource.dataSourceBody[0].value">
+                                                         <div class="help-block with-errors"></div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                     <div class="clone_source" ng-repeat="obj in requestBody.children">
+                                                         <div class="clearfix"></div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Key:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Key" required ng-model="newDataSource.dataSourceBody[$index+1].key">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                         <div class="form-group col-lg-5 col-sm-10 col-10 pl-0 float-left">
+                                                             <label for="name">Value:</label>
+                                                             <input type="text" class="form-control" name="name" id="email"
+                                                                 placeholder="Enter Value" required ng-model="newDataSource.dataSourceBody[$index+1].value">
+                                                             <div class="help-block with-errors"></div>
+                                                         </div>
+                                                     </div>
+                                                     <div class="clearfix"></div>
+                                                     <a href="javascript:void(0)" class="col-lg-2 float-left add_data_source_pls_inner mt-4"
+                                                         ng-click="addBodyChild()">+</a>
+                                                     <div class="clearfix"></div>
+                                                     </div>
+                                                 </div>
+
+                                             </div> 
+                                             <div class="clearfix"></div>
+                                         </div>
+                                         </div>
+
+                                         <div class="clearfix"></div>
+                                       
+                                        <input type="button" name="next" class="next btn btn-primary float-right mt-3 mr-3" value="Next" ng-click="generateRequest(newDataSource)" ng-disabled="(!add_datasource_form.datasource_url.$valid)&&(!add_datasource_form.datasourcesharepoint_url.$valid)&&(!(add_datasource_form.datasourcesignalr_url.$valid) && (!add_datasource_form.datasourcemethod_name.$valid))"/>
+                                        <input type="button" name="cancel" class="btn btn-secondary float-right mt-3 mr-3 add_data_source_calcel data_source_cls"
+                                                 value="Cancel" ng-click="DatasourcecloseConnection(newDataSource)" />
+                                     </fieldset>
+                                     
+                                     <fieldset>
+                                         <div class="row" cg-busy="{promise:dataSourceResponse,message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                             <div class="col-sm-5">
+                                                <div class="data-source-succus w-100 text-center" ng-if="(dataSourceData | json) != '{}' && !(dataSourceData.status>=300)">
+                                                    <p class="tick_round"><span class="icon-checkmark"></span></p>
+                                                    <p class="success_text">success !</p>
+                                                </div>
+                                                <div class="data-source-error w-100 text-center" ng-if="(dataSourceData | json) == '{}' || (dataSourceData.status>=300)">
+                                                    <p class="tick_round"><span class="icon-cross"></span></p>
+                                                    <p class="success_text">Error !</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-sm-7" ng-if="(dataSourceData | json) != '{}'">
+                                                <div class="code_block w-100 position-relative">
+                                                    <textarea class="w-100 s_f_json" rows="18" id="ruleJson">{{dataSourceData | json}}
+                                                                        </textarea>
+                                                </div>
+                                             </div>
+                                             <div class="col-sm-7" ng-if="(dataSourceData | json) == '{}'">
+                                                <div class="code_block w-100 position-relative">
+                                                    <textarea class="w-100 s_f_json" rows="18" id="ruleJson">{{dataSourceErrorData | json}}
+                                                                        </textarea>
+                                                </div>
+                                                 </div>
+                                         </div>
+                                         <button type="button" name="submit" class="submit btn btn-primary float-right ml-lg-3 ml-sm-1 ml-1 mt-3 add_data_source_calcel data_source_cls"
+                                         ng-disabled="(dataSourceData | json) == '{}'" ng-click="saveDataSource(newDataSource)" ng-enabled="(dataSourceData | json) != '{}' && !(dataSourceData.status>=300)">Save
+                                         & Close</button>
+                                     <button type="button" name="previous" class="previous btn btn-primary float-right ml-lg-3 ml-sm-1 ml-1 mt-3"
+                                         value="Previous" ng-click="DatasourcecloseConnection(newDataSource)">Previous</button>
+                                     <button type="button" name="cancel" class="btn btn-secondary float-right mt-3 add_data_source_calcel data_source_cls"
+                                         value="Cancel" ng-click="DatasourcecloseConnection(newDataSource)">Cancel</button>
+                                    </fieldset>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+<!-- ---------------- Edit Configuration Popup -->
+         <div class="" id="editwidget">
+             <div class="modal-dialog modal-lg">
+                 <div class="modal-content bg_color_light_gray">
+                    <button type="button" class="close position-absolute right-0" data-dismiss="modal" ng-click="cancelEditConfiguration(selectedDashboard.DashboardId)"><span
+                                         class="icon-close1 modal-close add_dashboard_main_close"></span></button>
+                     <!-- Modal body -->
+                     <div class="modal-body">
+                         <div class="col-lg-12 float-left">
+                             <div class="pl-0">
+                                 <h3 class="custom_h3 mb-3">Edit Widget</h3>
+                                 
+                                 <div class="clearfix"></div>
+                                     <form id="msform">
+                                             <div class="form-group col-lg-6 float-left pl-0">
+                                                 <label for="name">Name of Widget</label>
+                                                 <input type="text" class="form-control" id="name" placeholder="Name of Widget"
+                                                     required ng-model="editWidgetConfig.name">
+                                                 <div class="help-block with-errors"></div>
+                                             </div>
+                                             <div class="form-group col-lg-6 float-right pl-0" >
+                                                <label for="inputPassword4">Widget Type</label>
+                                                <input type="text" class="form-control" id="name" placeholder="Type of Widget"
+                                                required ng-model="editWidgetConfig.type" disabled>
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                            <div class="form-group col-lg-6 float-left pl-0" ng-if="editWidgetConfig.category!=''">
+                                                    <label for="name">Widget Subtype</label>
+                                                    <input type="text" class="form-control" id="name" placeholder="Name of Widget"
+                                                        required ng-model="editWidgetConfig.category" disabled>
+                                                    <div class="help-block with-errors"></div>
+                                                </div>
+                                                 <!-- Live in edit -->
+                                                <div ng-show="editWidgetConfig.livecheckbox">                                                     
+                                                    <div class="form-group col-lg-6 pl-0 float-left">
+                                                            <label for="name">Name of Data Source</label>
+                                                                <ui-select class="form-control p-0" ng-model="dataSourceSelected.selected"
+                                                                    ng-change="dataSourceChangeEdit(dataSourceSelected.selected)" theme="select2"
+                                                                    style="min-width: 300px;" title="Choose a Data Source"
+                                                                    append-to-body="true" ng-class="{'is-invalid' : (!form.configuration.hasOwnProperty('dataSourceSelected') && stepValidity)}">
+                                                                    <ui-select-match placeholder="Data Source">{{$select.selected.DataSourceName}}</ui-select-match>
+                                                                    <ui-select-choices repeat="config in apiSignalrRConfigList | propsFilter: {DataSourceName: $select.search}">
+                                                                        <div ng-bind-html="config.DataSourceName | highlight: $select.search"></div>
+                                                                
+                                                                    </ui-select-choices>
+                                                                </ui-select>
+                                                                <div class="invalid-feedback">
+                                                                    Please provide a Valid Data Source.
+                                                                </div>
+                                                         </div>
+                                                </div> 
+                                            <div ng-hide="editWidgetConfig.livecheckbox">    
+                                                <div class="form-group col-lg-6 pl-0 float-left">
+                                                 <label for="name">Name of Data Source</label>
+                                                    <ui-select class="form-control p-0" ng-model="dataSourceSelected.selected"
+                                                        ng-change="dataSourceChangeEdit(dataSourceSelected.selected)" theme="select2"
+                                                        style="min-width: 300px;" title="Choose a Data Source"
+                                                        append-to-body="true" ng-class="{'is-invalid' : (!form.configuration.hasOwnProperty('dataSourceSelected') && stepValidity)}">
+                                                        <ui-select-match placeholder="Data Source">{{$select.selected.DataSourceName}}</ui-select-match>
+                                                        <ui-select-choices repeat="config in apiConfigList | propsFilter: {DataSourceName: $select.search}">
+                                                            <div ng-bind-html="config.DataSourceName | highlight: $select.search"></div>
+                                                        </ui-select-choices>
+                                                    </ui-select>
+                                                    <div class="invalid-feedback">
+                                                        Please provide a Valid Data Source.
+                                                    </div>
+                                                </div>
+                                            </div>                                        
+                                              <div class="form-group col-lg-12 float-right pl-0">
+                                                 <label for="inputPassword4">Description</label>
+                                                 <textarea class="form-control" rows="3" required ng-model="editWidgetConfig.description"></textarea>
+                                                 <div class="help-block with-errors"></div>
+                                             </div>
+                                            
+                                            <div class="clearfix"></div>
+                                            <input type="button" class="btn btn-primary float-right ml-3 mt-3 add_dashboard_main_close text-light" value="Cancel" ng-click="cancelEditConfiguration(selectedDashboard.DashboardId)">
+                                            <input type="button" class="btn btn-primary float-right mt-3 modal-close text-light add_dashboard_main_close" ng-click="editConfiguration(editWidgetConfig)" value="Save & Close">                                            
+                                     </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+<!-- ---------------- Widget Configuration Popup -->
+         <div class="" id="configwidget">
+             <div class="modal-dialog modal-lg">
+                 <div class="modal-content bg_color_light_gray">
+                    <button type="button" class="close position-absolute right-0" data-dismiss="modal" ng-click="cancelEditConfiguration(selectedDashboard.DashboardId)"><span
+                                         class="icon-close1 modal-close add_dashboard_main_close"></span></button>
+                     <!-- Modal body -->
+                     <div class="modal-body">
+                         <div class="col-lg-12 float-left">
+                             <div class="pl-0">
+                                 <h3 class="custom_h3 mb-3">Widget Configuration</h3>
+                                 <div class="clearfix"></div>
+                                     <form id="msform">
+                                             <div class="form-group col-lg-6 float-left pl-0"  ng-if="editWidgetConfig.type=='chart'">
+                                                <label for="name" class="mb-2">Chart Color</label> <br/>
+                                                <div class="clearfix"></div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                  <input type="radio" class="custom-control-input" id="customRadio5" name="example2">
+                                                  <label class="custom-control-label" for="customRadio5">Flat Color</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                  <input type="radio" class="custom-control-input" id="customRadio6" name="example2">
+                                                  <label class="custom-control-label" for="customRadio6">Pastel Color</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                  <input type="radio" class="custom-control-input" id="customRadio7" name="example2">
+                                                  <label class="custom-control-label" for="customRadio7">Contrast Color</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                  <input type="radio" class="custom-control-input" id="customRadio8" name="example2">
+                                                  <label class="custom-control-label" for="customRadio8">Warm & Cool Colors</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6 float-right px-0" ng-if="editWidgetConfig.type=='chart'">
+                                                <label for="name" class="mb-2">Chart Controls</label><br/>
+                                                <div class="clearfix"></div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('showLegend')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck" name="example1" ng-checked="multiChartConfig[editWidgetConfig.id].chart.showLegend"  ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.showLegend">
+                                                  <label class="custom-control-label" for="customCheck">Show Legend</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('showLabels')" >
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck7" name="example2" ng-checked="multiChartConfig[editWidgetConfig.id].chart.showLabels"  ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.showLabels">
+                                                    <label class="custom-control-label" for="customCheck7">Show Labels</label>
+                                                  </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('showControls')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck1" name="example3" ng-checked="multiChartConfig[editWidgetConfig.id].chart.showControls" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.showControls">
+                                                  <label class="custom-control-label" for="customCheck1">Show Controls</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('showValues')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck2" name="example4" ng-checked="multiChartConfig[editWidgetConfig.id].chart.showValues" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.showValues">
+                                                  <label class="custom-control-label" for="customCheck2">Show Values</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('tooltip')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck3" name="example5" ng-checked="multiChartConfig[editWidgetConfig.id].chart.tooltip.enabled" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.tooltip.enabled">
+                                                  <label class="custom-control-label" for="customCheck3">Tooltip</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('rightAlignYAxis')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck4" name="example6" ng-checked="multiChartConfig[editWidgetConfig.id].chart.rightAlignYAxis" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.rightAlignYAxis">
+                                                  <label class="custom-control-label" for="customCheck4">Right Align Y Axis</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('showXAxis')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck5" name="example7" ng-checked="multiChartConfig[editWidgetConfig.id].chart.showXAxis" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.showXAxis">
+                                                  <label class="custom-control-label" for="customCheck5">Show X Axis</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('showYAxis')" >
+                                                  <input type="checkbox" class="custom-control-input" id="customCheck6" name="example8" ng-checked="multiChartConfig[editWidgetConfig.id].chart.showYAxis" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.showYAxis">
+                                                  <label class="custom-control-label" for="customCheck6">Show Y Axis</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox custom-control-inline" ng-if="multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('focusEnable')" >
+                                                    <input type="checkbox" class="custom-control-input" id="customCheck9" name="example9" ng-checked="multiChartConfig[editWidgetConfig.id].chart.focusEnable" ng-true-value="true" ng-false-value="false" ng-model="multiChartConfig[editWidgetConfig.id].chart.focusEnable">
+                                                    <label class="custom-control-label" for="customCheck9">Enable Focus</label>
+                                                  </div>
+                                            </div>
+
+                                            <div class="form-group col-lg-6 float-left pr-0 px-0" ng-if="editWidgetConfig.type=='chart' && multiChartConfig[editWidgetConfig.id].chart.hasOwnProperty('rightAlignYAxis')">
+                                                <label for="name" class="mb-2">Chart Legend Positions</label><br/>
+                                                <div class="clearfix"></div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                  <input type="radio" class="custom-control-input" id="customRadio1" name="example1" ng-model="multiChartConfig[editWidgetConfig.id].chart.legend.rightAlign" ng-checked="multiChartConfig[editWidgetConfig.id].chart.rightAlignYAxis=='false'" ng-value="false">
+                                                  <label class="custom-control-label" for="customRadio1">Left</label>
+                                                </div>
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                  <input type="radio" class="custom-control-input" id="customRadio2" name="example1" ng-model="multiChartConfig[editWidgetConfig.id].chart.legend.rightAlign" ng-checked="multiChartConfig[editWidgetConfig.id].chart.rightAlignYAxis=='true'"  ng-value="true">
+                                                  <label class="custom-control-label" for="customRadio2">Right</label>
+                                                </div>
+                                            </div>
+
+
+                                             <div class="form-group col-lg-6 float-left pl-0" ng-if="editWidgetConfig.type=='chart' && editWidgetConfig.category!='pie' && editWidgetConfig.category!='donut' && editWidgetConfig.category!='halfdonut' && editWidgetConfig.category!='boxPlot' && editWidgetConfig.category!='bullet'">
+                                                 <label for="name">X Axis Name</label>
+                                                 <input type="text" class="form-control" id="name" placeholder="X Axis Name"
+                                                     required ng-model="multiChartConfig[editWidgetConfig.id].chart.xAxis.axisLabel">
+                                                 <div class="help-block with-errors"></div>
+                                             </div>
+                                             <div class="form-group col-lg-6 float-left pr-0 px-0" ng-if="editWidgetConfig.type=='chart' && editWidgetConfig.category!='pie' && editWidgetConfig.category!='donut' && editWidgetConfig.category!='halfdonut' && editWidgetConfig.category!='boxPlot' && editWidgetConfig.category!='bullet' &&  editWidgetConfig.category!='lineBar'" >
+                                                 <label for="name">Y Axis Name</label>
+                                                 <input type="text" class="form-control" id="name" placeholder="Y Axis Name"
+                                                     required ng-model="multiChartConfig[editWidgetConfig.id].chart.yAxis.axisLabel">
+                                                 <div class="help-block with-errors"></div>
+                                             </div>
+                                             <div class="form-group col-lg-4 float-left pr-0" ng-if="editWidgetConfig.type=='chart' && editWidgetConfig.category=='lineBar'">
+                                                <label for="name">Y1 Axis Name</label>
+                                                <input type="text" class="form-control" id="name" placeholder="Y1 Axis Name"
+                                                    required ng-model="multiChartConfig[editWidgetConfig.id].chart.y1Axis.axisLabel">
+                                                <div class="help-block with-errors"></div>
+                                            </div>
+                                             <div class="clearfix"></div>                                            
+                                             <div class="form-group col-lg-4 float-left pr-0" ng-if="editWidgetConfig.type=='chart' && editWidgetConfig.category=='lineBar'">
+                                                 <label for="name">Y2 Axis Name</label>
+                                                 <input type="text" class="form-control" id="name" placeholder="Y2 Axis Name"
+                                                     required ng-model="multiChartConfig[editWidgetConfig.id].chart.y2Axis.axisLabel">
+                                                 <div class="help-block with-errors"></div>
+                                             </div>                                           
+                                             <div class="clearfix"></div>
+                                             <div class="form-group col-lg-12 float-right pr-lg-0 px-0">
+                                                <label for="name">Preview</label>
+                                                <div class="edit_widget_perviw" >
+                                                        <div class="" ng-if="editWidgetConfig.category=='number'" style="height:100%;text-align:center">
+                                                                <div cg-busy="{promise:dashboardDisplayData[editWidgetConfig.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                                                    <span class="number_count">{{dashboardTile[editWidgetConfig.id].value}}</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="" ng-if="editWidgetConfig.category=='numberUnit'" style="height:100%;text-align:center">
+                                                                <div cg-busy="{promise:dashboardDisplayData[editWidgetConfig.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}">
+                                                                    <span class="number_count">{{dashboardTile[editWidgetConfig.id].value}}</span>
+                                                                    <span>{{dashboardTile[editWidgetConfig.id].unit}}</span>
+															</div>
+                                                            </div>
+                                                            <div class="" ng-if="editWidgetConfig.type=='chart'" style="height:100%;">
+                                                                <div cg-busy="{promise:dashboardDisplayData[editWidgetConfig.id],message:'Loading Your Data',templateUrl:'/client/views/dataloader/index.html'}"></div>
+                                                                <nvd3 class="" options="multiChartConfig[editWidgetConfig.id]" data="dashboardTile[editWidgetConfig.id]"></nvd3>
+                                                            </div>                                                           
+                                                            <div class="" ng-if="editWidgetConfig.category=='image'" style="height:100%; text-align: center;">
+                                                                <img style="height: 100%; max-width: 100%;" ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url}}">
+                                                            </div>
+                                                            <div class="" ng-if="editWidgetConfig.type=='table'" style="height:100%;width: 100%;">
+                                                                <ul class="table_drag" dnd-list="tempTableArray">                                                            
+                                                                    <li ng-repeat="item in tempTableArray"
+                                                                        dnd-draggable="item"
+                                                                        dnd-moved="tempTableArray.splice($index, 1)"
+                                                                        dnd-effect-allowed="move"
+                                                                        dnd-selected="models.selected = item"
+                                                                        ng-class="{'selected': models.selected === item}"
+                                                                        >
+                                                                        <span>{{item.key}}</span>
+                                                                        <input type="text" name="" ng-model="tableWidegtObj[item.key]">
+                                                                        <a class="table_li_edit"><span class="icon-edit"></span></a>
+                                                                </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.type=='webpage'" style="height:100%;">
+                                                                <iframe ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}" style="height:100%;width: 100%">
+                                                                </iframe>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.type=='powerbi'" style="height:100%;">
+                                                                <iframe style="height:100%;width: 100%" ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}"
+                                                                    frameborder="0" allowFullScreen="true">
+                                                                </iframe>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.category=='video' && editWidgetConfig.configuration.dataSourceSelected.type=='externalLink'" style="height:100%;">
+                                                                <iframe width="100%" class="video_height" ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}"></iframe>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.category=='video' && editWidgetConfig.configuration.dataSourceSelected.type=='mp4'" style="height:100%;">
+                                                                <video class="video_height" width="100%" controls>
+                                                                    <source ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}" type="video/mp4">
+                                                                    Your browser does not support HTML5 video.
+                                                                    </video>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.category=='audio' && editWidgetConfig.configuration.dataSourceSelected.type=='externalLink'" style="height:100%;">
+                                                                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}"></iframe>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.category=='audio' && editWidgetConfig.configuration.dataSourceSelected.type=='mp3'" style="height:100%;">
+                                                            
+                                                                <audio id="t-rex-roar-loop" controls>
+                                                                <source type="audio/mpeg" ng-src="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}"/>
+                                                                Your browser does not support the <code>audio</code> element.
+                                                                </audio>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.category=='markerMap'" style="height:100%;" >
+                                                                <div id={{"map"+editWidgetConfig.id}} style="height:100%;width:100%"></div>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.category=='heatMap'" style="height:100%;">
+                                                                <div id={{"heatmap"+editWidgetConfig.id}} style="height:100%;width:100%"></div>
+                                                            </div>
+                                                            <div ng-if="editWidgetConfig.type=='action'" style="height:100%;">
+                                                                    <a ng-href="{{editWidgetConfig.configuration.dataSourceSelected.url | trusted}}" target="_blank">{{editWidgetConfig.configuration.dataSourceSelected.url}}</a> 
+                                                                </div>
+                                                            <div class="calendar_main" ng-if="editWidgetConfig.type=='calendar'" data="dashboardTile[editWidgetConfig.id]" dhx-scheduler style="height:100%;">
+                                                                <div class="dhx_cal_date"></div>
+                                                            
+                                                            <div class="calendar_ctrls">
+                                                                <div class="dhx_cal_prev_button">&nbsp;</div>
+                                                                <div class="dhx_cal_next_button">&nbsp;</div>
+                                                                <div class="dhx_cal_today_button"></div>
+                                                                <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+                                                                <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+                                                                <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+                                                            </div>
+                                                                <div dhx-template="event_bar_text">
+                                                                    <strong>#{{dashboardTile[editWidgetConfig.id].id}}</strong>: {{dashboardTile[editWidgetConfig.id].text | uppercase}}
+                                                                </div>
+                                                                <div>
+                                                                </div>
+                                                            </div>                                                            
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <input type="button" class="btn btn-primary float-right ml-3 mt-3 add_dashboard_main_close text-light" value="Cancel" ng-click="cancelEditConfiguration(selectedDashboard.DashboardId)">
+                                            <input type="button" class="btn btn-primary float-right mt-3 modal-close text-light add_dashboard_main_close" ng-click="editWidgetCustomization(multiChartConfig[editWidgetConfig.id].chart,editWidgetConfig,selectedDashboard)" value="Save & Close" ng-if="editWidgetConfig.type=='chart'">
+                                            <input type="button" class="btn btn-primary float-right mt-3 modal-close text-light add_dashboard_main_close" ng-click="editWidgetCustomizationTable(tempTableArray,editWidgetConfig,selectedDashboard,tableWidegtObj)" value="Save & Close" ng-if="editWidgetConfig.type=='table'">
+                                            
+                                     </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+ <!-- ---------------- Share Popups ------------ -->
+         <div class="modal fade" id="share">
+             <div class="modal-dialog modal-lg">
+                 <div class="modal-content bg_color_light_gray">
+                     <!-- Modal body -->
+                     <div class="modal-body">
+                         <form name="shareDashboardForm">
+                                <button type="button" class="close" data-dismiss="modal"><span class="icon-close1 modal-close"></span></button>
+                                <h3 class="custom_h3 mb-2"><span class="icon-share"></span> Share</h3>
+                                <p class="share_p">You can share only with your saved Contact's</p>
+                                <div class="clearfix"></div>
+                                <ui-select class="col-lg-12 p-0" ng-model="shareUserSelected" ng-change="shareUserChange(shareUserSelected)"
+                                theme="select2" style="min-width: 300px;" title="Choose a User "
+                                append-to-body="true">
+       
+                                <ui-select-match placeholder="Enter User Email For Sharing">
+                                    {{$select.selected.UserName}}</ui-select-match>
+                                <ui-select-choices repeat="user in UserListData | propsFilter: {Email: $select.search}">
+                                    <div ng-bind-html="user.UserName"></div>
+                                    <small>
+                                        <div ng-bind-html="user.Email | highlight: $select.search"></div>
+                                    </small>
+                                </ui-select-choices>
+                            </ui-select>  
+                            <div class="invalid-feedback">
+                               Select User cannot be empty.
+                           </div>                         
+                                <div class="clearfix"></div>
+                                 <input type="button" name="next" class="btn btn-primary float-right mt-3 " value="Share" class="close"
+                                    data-dismiss="modal" ng-click="shareDashboard(selectedDashboard.DashboardId)" ng-disabled="shareValidity">
+                               <input type="button" name="next" class="btn btn-primary float-right mt-3 mr-3 " value="Cancel" class="close"
+                               data-dismiss="modal">
+                         </form>                 
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+  
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+ <script src="/client/assets/js/lib/resCarousel.js"></script>
+ <script src="/client/assets/js/lib/tablecellsselection.js"></script>
+ <script src="/client/assets/js/custom.js"></script>
+ 

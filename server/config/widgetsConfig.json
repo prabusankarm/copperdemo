@@ -1,0 +1,845 @@
+[
+    {
+        "WidgetName": "Video",
+        "WidgetType": "media",
+        "WidgetConfigJson": {
+            "name": "Video",
+            "image": "video",
+            "value": "video"
+        }
+    },
+    {
+        "WidgetName": "Audio",
+        "WidgetType": "media",
+        "WidgetConfigJson": {
+            "name": "Audio",
+            "image": "audio",
+            "value": "audio"
+        }
+    },
+    {
+        "WidgetName": "Image",
+        "WidgetType": "media",
+        "WidgetConfigJson": {
+            "name": "Image",
+            "image": "image",
+            "value": "image"
+        }
+    },
+    {
+        "WidgetName": "Carousel",
+        "WidgetType": "media",
+        "WidgetConfigJson": {
+            "name": "Carousel",
+            "image": "carousel",
+            "value": "carousel"
+        }
+    },
+    {
+        "WidgetName": "Heat Map",
+        "WidgetType": "map",
+        "WidgetConfigJson": {
+            "name": "Heat Map",
+            "image": "heatmap",
+            "value": "heatMap"
+        }
+    },
+    {
+        "WidgetName": "Marker Map",
+        "WidgetType": "map",
+        "WidgetConfigJson": {
+            "name": "Marker Map",
+            "image": "marker_map",
+            "value": "markerMap"
+        }
+    },
+    {
+        "WidgetName": "Butto",
+        "WidgetType": "action",
+        "WidgetConfigJson": {
+            "name": "Button",
+            "image": "button",
+            "value": "button"
+        }
+    },
+    {
+        "WidgetName": "Number with Units",
+        "WidgetType": "number",
+        "WidgetConfigJson": {
+            "name": "Number with Units",
+            "image": "number&unit",
+            "value": "numberUnit"
+        }
+    },
+    {
+        "WidgetName": "Only Number",
+        "WidgetType": "number",
+        "WidgetConfigJson": {
+            "name": "Only Number",
+            "image": "number",
+            "value": "number"
+        }
+    },
+    {
+        "WidgetName": "Number with SignalR",
+        "WidgetType": "live",
+        "WidgetConfigJson": {
+            "name": "Number with SignalR",
+            "image": "icon-signalr",
+            "value": "numberSignalR"
+        }
+    },
+    {
+        "WidgetName": "Donut",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Donut",
+            "image": "donutChart",
+            "value": "donut",
+            "config": {
+                "type": "pieChart",
+                "labelSunbeamLayout": true,
+                "donut": true,
+                "showLabels": true,
+                "showLegend": true,
+                "duration": 500,
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                }
+            }
+        }
+    },
+    {
+        "WidgetName": "Pie",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Pie",
+            "image": "pieChart",
+            "value": "pie",
+            "config": {
+                "type": "pieChart",
+                "labelSunbeamLayout": true,
+                "showLabels": true,
+                "showLegend": true,
+                "donut": false,
+                "transitionDuration": 500,
+                "labelThreshold": 0.02,
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "noData": "No Records Found" 
+            }
+        }
+    },
+    {
+        "WidgetName": "Line",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Line",
+            "image": "lineChart",
+            "value": "line",
+            "config": {
+                "type": "lineChart",
+                "showLabels": true,
+                "showLegend": true,
+                "useInteractiveGuideline": true,
+                "xAxis": {
+                    "axisLabel": "Time (ms)"
+                },
+                "yAxis": {
+                    "axisLabel": "Voltage (v)",
+                    "axisLabelDistance": -10
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Stacked area",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Stacked Area",
+            "image": "stackedAreaChart",
+            "value": "stackedArea",
+            "config": {
+                "type": "stackedAreaChart",
+                "useVoronoi": false,
+                "clipEdge": true,
+                "transitionDuration": 500,
+                "useInteractiveGuideline": true,
+                "xAxis": {
+                    "axisLabel": "Time (ms)",
+                    "showMaxMin": false
+                },
+                "yAxis": {
+                    "axisLabel": "Time (ms)"
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "showControls":true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Discrete Bar",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Discrete Bar",
+            "image": "discreteBarChart",
+            "value": "discreteBar",
+            "config": {
+                "type": "discreteBarChart",
+                "transitionDuration": 500,
+                "xAxis": {
+                    "axisLabel": "X Axis",
+                    "axisLabelDistance": -8
+                },
+                "yAxis": {
+                    "axisLabel": "Y Axis",
+                    "axisLabelDistance": -10
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "showValues": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Box Plot",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Box Plot",
+            "image": "boxPlotChart",
+            "value": "boxPlot",
+            "config": {
+                "type": "boxPlotChart",
+                "color": [
+                    "darkblue",
+                    "darkorange",
+                    "green",
+                    "darkred",
+                    "darkviolet"
+                ],
+                "yDomain": [
+                    0,
+                    500
+                ],
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+
+            }
+        }
+    },
+    {
+        "WidgetName": "Cumulative Line",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Cumulative Line",
+            "image": "cumulativeLineChart",
+            "value": "cumulativeLine",
+            "config": {
+                "type": "cumulativeLineChart",
+                "color": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf"
+                ],
+                "duration": 300,
+                "useInteractiveGuideline": true,
+                "clipVoronoi": false,
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "showValues": true,
+                "rightAlignYAxis": true,
+                "showControls": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Multi Bar",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Multi Bar",
+            "image": "multiBarChart",
+            "value": "multiBar",
+            "config": {
+                "type": "multiBarChart",
+                "clipEdge": true,
+                "duration": 500,
+                "stacked": true,
+                "xAxis": {
+                    "axisLabel": "Time (ms)",
+                    "showMaxMin": false
+                },
+                "yAxis": {
+                    "axisLabel": "Y Axis",
+                    "axisLabelDistance": -20
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "rightAlignYAxis": true,
+                "showControls": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Historical Bar",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Historical Bar",
+            "image": "historicalBarChart",
+            "value": "historicalBar",
+            "config": {
+                "type": "historicalBarChart",
+                "duration": 100,
+                "xAxis": {
+                    "axisLabel": "X Axis",
+                    "rotateLabels": 30,
+                    "showMaxMin": false
+                },
+                "yAxis": {
+                    "axisLabel": "Y Axis",
+                    "axisLabelDistance": -10
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Multi Bar Horizontal",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Multi Bar Horizontal",
+            "image": "multiBarHorizontalChart",
+            "value": "multiBarHorizontal",
+            "config": {
+                "type": "multiBarHorizontalChart",
+                "showControls": true,
+                "showValues": true,
+                "duration": 500,
+                "xAxis": {
+                    "showMaxMin": false
+                },
+                "yAxis": {
+                    "axisLabel": "Values"
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Scatter",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Scatter",
+            "image": "scatterChart",
+            "value": "scatter",
+            "config": {
+                "type": "scatterChart",
+                "color": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf"
+                ],
+                "scatter": {
+                    "onlyCircles": false
+                },
+                "showDistX": true,
+                "showDistY": true,
+                "duration": 350,
+                "xAxis": {
+                    "axisLabel": "X Axis"
+                },
+                "yAxis": {
+                    "axisLabel": "Y Axis",
+                    "axisLabelDistance": -5
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "rightAlignYAxis": true,
+                "showControls": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Line with focus",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Line with Focus",
+            "image": "lineWithFocusChart",
+            "value": "linefocus",
+            "config": {
+                "type": "lineWithFocusChart",
+                "duration": 50,
+                "xAxis": {
+                    "axisLabel": "X Axis"
+                },
+                "x2Axis": {},
+                "yAxis": {
+                    "axisLabel": "Y Axis",
+                    "rotateYLabel": false
+                },
+                "y2Axis": {},
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "focusEnable":true,
+                "showLegend": true,
+                "showLabels":true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Scatter with line",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Scatter with Line",
+            "image": "scatterLineChart",
+            "value": "scatterLine",
+            "config": {
+                "type": "scatterChart",
+                "color": [
+                    "#1f77b4",
+                    "#ff7f0e",
+                    "#2ca02c",
+                    "#d62728",
+                    "#9467bd",
+                    "#8c564b",
+                    "#e377c2",
+                    "#7f7f7f",
+                    "#bcbd22",
+                    "#17becf"
+                ],
+                "scatter": {
+                    "onlyCircles": false
+                },
+                "showDistX": true,
+                "showDistY": true,
+                "showValues": true,
+                "duration": 350,
+                "xAxis": {
+                    "axisLabel": "X Axis"
+                },
+                "yAxis": {
+                    "axisLabel": "Y Axis",
+                    "axisLabelDistance": 30
+                },
+                "zoom": {
+                    "enabled": true,
+                    "scaleExtent": [
+                        1,
+                        10
+                    ],
+                    "useFixedDomain": true,
+                    "useNiceScale": false,
+                    "horizontalOff": false,
+                    "verticalOff": false,
+                    "unzoomEventType": "dblclick.zoom"
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Bar with line",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Bar with Line",
+            "image": "linePlusBarChart",
+            "value": "lineBar",
+            "config": {
+                "type": "linePlusBarChart",
+                "showValues": true,
+                "bars": {
+                    "forceY": [
+                        0
+                    ]
+                },
+                "bars2": {
+                    "forceY": [
+                        0
+                    ]
+                },
+                "color": [
+                    "#2ca02c",
+                    "darkred"
+                ],
+                "xAxis": {
+                    "axisLabel": "X Axis"
+                },
+                "x2Axis": {
+                    "showMaxMin": false
+                },
+                "y1Axis": {
+                    "axisLabel": "Y1 Axis",
+                    "axisLabelDistance": 12
+                },
+                "y2Axis": {
+                    "axisLabel": "Y2 Axis"
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "focusEnable":true,
+                "showXAxis": true,
+                "showYAxis": true,
+                "showLegend": true,
+                "showLabels": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Semi donut",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Semi Donut",
+            "image": "semiDonutChart",
+            "value": "halfDonut",
+            "config": {
+                "type": "pieChart",
+                "labelSunbeamLayout": true,
+                "donut": true,
+                "showLabels": true,
+                "showLegend": true,
+                "duration": 500,
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Bullet",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Bullet",
+            "image": "bulletChart",
+            "value": "bullet",
+            "config": {
+                "type": "bulletChart",
+                "transitionDuration": 500,
+                "showValues": true,
+                "tooltip": {
+                    "enabled":true
+                }
+            },
+            "noData": "No Records Found"
+        }
+    },
+    {
+        "WidgetName": "Sparkline",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Sparkline",
+            "image": "sparklineChart",
+            "value": "sparkline",
+            "config": {
+                "type": "sparklinePlus",
+                "showValues": true,
+                "duration": 250,
+                "showLastValue": true
+            },
+            "noData": "No Records Found"
+        }
+    },
+    {
+        "WidgetName": "Candlestick",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "Candlestick",
+            "image": "candlestickBarChart",
+            "value": "candlestick",
+            "config": {
+                "type": "candlestickBarChart",
+                "duration": 100,
+                "rightAlignYAxis":true,
+                "xAxis": {
+                    "axisLabel": "Dates",
+                    "showMaxMin": false
+                },
+                "yAxis": {
+                    "axisLabel": "Stock Price",
+                    "showMaxMin": false
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "noData": "No Records Found"            }
+        }
+    },
+    {
+        "WidgetName": "OHLC",
+        "WidgetType": "chart",
+        "WidgetConfigJson": {
+            "name": "OHLC",
+            "image": "ohlcBarChart",
+            "value": "ohlc",
+            "config": {
+                "type": "ohlcBarChart",
+                "margin": {
+                    "top": 20,
+                    "right": 20,
+                    "bottom": 40,
+                    "left": 60
+                },
+                "duration": 100,
+                "xAxis": {
+                    "axisLabel": "Dates",
+                    "showMaxMin": false
+                },
+                "showValues": true,
+                "yAxis": {
+                    "axisLabel": "Stock Price",
+                    "showMaxMin": false
+                },
+                "legend": {
+                    "margin": {
+                        "top": 10,
+                        "right": 10,
+                        "bottom": 10,
+                        "left": 10
+                    },
+                    "rightAlign": true
+                },
+                "tooltip": {
+                    "enabled":true
+                },
+                "showXAxis": true,
+                "showYAxis": true,
+                "rightAlignYAxis": true,
+                "noData": "No Records Found"
+            }
+        }
+    },
+    {
+        "WidgetName": "Table",
+        "WidgetType": "table",
+        "WidgetConfigJson": {
+            "enableColResize": true,
+            "enableSorting": true,
+            "enableFilter": true,
+            "paginationAutoPageSize": true,
+            "pagination": true
+        }
+    }
+]
